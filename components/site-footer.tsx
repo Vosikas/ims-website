@@ -8,7 +8,7 @@ type SiteFooterProps = {
 
 export function SiteFooter({ dict, logo }: SiteFooterProps) {
   return (
-    <footer id="contact" className="bg-navy text-white">
+    <footer className="bg-navy text-white">
       <div className="flex flex-col gap-6 px-6 py-8 sm:flex-row sm:items-center sm:justify-between lg:h-[6.2rem] lg:pt-0 lg:pr-[3.125rem] lg:pb-[0.4rem] lg:pl-[3rem]">
         <Logo
           link={logo}

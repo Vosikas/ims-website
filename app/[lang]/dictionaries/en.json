@@ -14,7 +14,7 @@
       "pathways": "Our Educational Pathways",
       "schoolLife": "School Life",
       "newsEvents": "News & Events",
-      "contact": "Contact & Careers"
+      "contact": "Contact"
     },
     "language": "Language",
     "search": "Search",
@@ -111,6 +111,62 @@
     "more": "More news",
     "empty": "There is no news to show yet. Please check back soon.",
     "sampleNotice": "Sample content: these articles are placeholders until the site is connected to WordPress."
+  },
+  "contact": {
+    "metaTitle": "Contact | IMS",
+    "eyebrow": "Contact",
+    "title": "Get in touch",
+    "intro": "IMS operates across three campuses in Alimos and Argyroupoli. Here are the details for each one.",
+    "labels": {
+      "address": "Address",
+      "phone": "Phone",
+      "email": "Email",
+      "hours": "Hours",
+      "map": "Map",
+      "openMap": "Open in Google Maps"
+    },
+    "campuses": {
+      "earlyYears": {
+        "campus": "Campus 1",
+        "name": "Early Years",
+        "address": "Kosti Palama 17-19\n174 55 Alimos"
+      },
+      "primary": {
+        "campus": "Campus 2",
+        "name": "Primary School",
+        "address": "Ipsilantou 9\n164 52 Argyroupoli"
+      },
+      "middleHigh": {
+        "campus": "Campus 3",
+        "name": "Middle-High School",
+        "address": "Ioannou Chrisostomou 10\n174 55 Alimos"
+      }
+    },
+    "parents": {
+      "title": "For our parents",
+      "items": [
+        "Daily updates are shared through the electronic notebook on the school platform.",
+        "You can contact teachers online through the 4schools school platform.",
+        "At the start of the school year, every teacher sets one day a week for phone appointments.",
+        "Scheduled meetings with teachers take place online or in person during the school year.",
+        "In an emergency, you can contact the school office online or by phone (Early Years only)."
+      ]
+    },
+    "programmes": {
+      "title": "Programme hours",
+      "items": [
+        {
+          "name": "Homework Club (Primary School)",
+          "hours": "14:00 – 16:00",
+          "detail": "Optional, after the main school programme."
+        },
+        {
+          "name": "Summer Camp",
+          "hours": "8:00 – 16:00",
+          "detail": "Monday to Friday, for 4 weeks after the school year ends."
+        }
+      ]
+    }
   },
   "notFound": {
     "title": "We couldn't find this page",

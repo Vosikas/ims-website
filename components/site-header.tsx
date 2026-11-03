@@ -96,13 +96,14 @@ function HeaderContent({ lang, dict, logo, pathname }: SiteHeaderProps & { pathn
 
   const home = logo.href;
   const news = `${home}/news`;
+  const contact = `${home}/contact`;
   const navItems = [
     { label: dict.nav.home, href: home, current: pathname === home },
     { label: dict.nav.about, href: `${home}#about` },
     { label: dict.nav.pathways, href: `${home}#pathways` },
     { label: dict.nav.schoolLife, href: `${home}#school-life` },
     { label: dict.nav.newsEvents, href: news, current: pathname?.startsWith(news) },
-    { label: dict.nav.contact, href: "#contact" },
+    { label: dict.nav.contact, href: contact, current: pathname === contact },
   ];
 
   return (
@@ -112,9 +113,9 @@ function HeaderContent({ lang, dict, logo, pathname }: SiteHeaderProps & { pathn
 
         <nav
           aria-label={dict.nav.label}
-          className="relative top-[0.61rem] ml-[3.58rem] hidden lg:block el:ml-[2.2rem]"
+          className="relative top-[0.61rem] ml-[3.58rem] hidden lg:block"
         >
-          <ul className="flex gap-[0.96rem] el:gap-[0.62rem]">
+          <ul className="flex gap-[0.96rem]">
             {navItems.map((item) => (
               <li key={item.label}>
                 <Link
@@ -136,7 +137,7 @@ function HeaderContent({ lang, dict, logo, pathname }: SiteHeaderProps & { pathn
           <span className="mr-[0.9rem] ml-[0.8rem] h-[0.9rem] w-px bg-navy/20" />
           <SearchButton label={dict.search} />
           <Link
-            href="#contact"
+            href={contact}
             className={`${admissionsClassName} ml-[1.35rem] h-[2.25rem] w-[5.375rem] text-[0.62rem]`}
           >
             {dict.admissions}
@@ -180,7 +181,7 @@ function HeaderContent({ lang, dict, logo, pathname }: SiteHeaderProps & { pathn
             <LanguageSwitch lang={lang} label={dict.language} pathname={pathname} />
             <SearchButton label={dict.search} />
             <Link
-              href="#contact"
+              href={contact}
               onClick={() => setMenuOpen(false)}
               className={`${admissionsClassName} ml-auto h-11 px-6 text-sm`}
             >

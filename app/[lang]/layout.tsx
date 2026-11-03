@@ -86,8 +86,8 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
   const dict = await getDictionary(lang);
   const logo = { href: `/${lang}`, label: dict.logo.label };
 
-  // The header and footer live here so there's only ever one of each: visited pages stay
-  // hidden in the DOM, and a footer per page would duplicate the #contact id.
+  // The header and footer live here so there's only ever one of each, as visited pages stay
+  // hidden in the DOM.
   return (
     <html lang={lang} data-scroll-behavior="smooth" className={`${fontVariables} antialiased`}>
       <body className="bg-white font-sans text-navy">
