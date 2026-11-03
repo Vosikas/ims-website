@@ -1,5 +1,6 @@
 import Image, { type StaticImageData } from "next/image";
 import Link from "next/link";
+import type { Dictionary } from "@/app/[lang]/dictionaries";
 import { ArrowRightIcon } from "@/components/icons";
 import newsEventsImage from "@/public/images/home/news-events.jpg";
 import schoolLifeImage from "@/public/images/home/school-life.jpg";
@@ -22,26 +23,13 @@ const tones = {
 type FeaturePanelProps = {
   id: string;
   tone: keyof typeof tones;
-  title: string;
-  description: string;
-  linkLabel: string;
+  text: Dictionary["schoolLife"];
   image: StaticImageData;
-  alt: string;
   contentClassName: string;
   photoClassName: string;
 };
 
-function FeaturePanel({
-  id,
-  tone,
-  title,
-  description,
-  linkLabel,
-  image,
-  alt,
-  contentClassName,
-  photoClassName,
-}: FeaturePanelProps) {
+function FeaturePanel({ id, tone, text, image, contentClassName, photoClassName }: FeaturePanelProps) {
   const styles = tones[tone];
 
   return (
@@ -54,18 +42,18 @@ function FeaturePanel({
         <span className="block h-[0.125rem] w-[1.95rem] bg-gold" />
         <h2
           id={`${id}-heading`}
-          className={`mt-[0.75rem] font-serif text-[2rem] leading-tight lg:text-[1.64rem] lg:leading-[2.1rem] ${styles.title}`}
+          className={`mt-[0.75rem] font-serif text-[2rem] leading-tight lg:text-[1.64rem] lg:leading-[2.1rem] el:lg:text-[1.5rem] ${styles.title}`}
         >
-          {title}
+          {text.title}
         </h2>
         <p className="mt-[0.35rem] leading-[1.45] whitespace-pre-line lg:text-[0.81rem] lg:leading-[1.07rem]">
-          {description}
+          {text.description}
         </p>
         <Link
           href={`#${id}`}
           className={`mt-[1rem] inline-flex h-11 items-center gap-[0.8rem] rounded-full px-[1.05rem] text-xs font-bold tracking-[0.05em] uppercase transition-colors lg:h-[1.85rem] lg:text-[0.6rem] ${styles.button}`}
         >
-          {linkLabel}
+          {text.linkLabel}
           <ArrowRightIcon className="w-[1rem]" />
         </Link>
       </div>
@@ -74,7 +62,7 @@ function FeaturePanel({
       >
         <Image
           src={image}
-          alt={alt}
+          alt={text.alt}
           fill
           placeholder="blur"
           sizes="(min-width: 1024px) 26vw, (min-width: 640px) 50vw, 100vw"
@@ -88,32 +76,27 @@ function FeaturePanel({
   );
 }
 
-export function FeaturePanels() {
+type FeaturePanelsProps = {
+  schoolLife: Dictionary["schoolLife"];
+  newsEvents: Dictionary["newsEvents"];
+};
+
+export function FeaturePanels({ schoolLife, newsEvents }: FeaturePanelsProps) {
   return (
     <div className="mt-[2.06rem] mb-[0.125rem] grid lg:grid-cols-2">
       <FeaturePanel
         id="school-life"
         tone="dark"
-        title="School Life"
-        description={
-          "Learning goes beyond the classroom.\nDiscover our activities, clubs, sports\nand community events."
-        }
-        linkLabel="Explore School Life"
+        text={schoolLife}
         image={schoolLifeImage}
-        alt="Students playing basketball on an outdoor court"
         contentClassName="lg:pt-[1.5rem] lg:pl-[3.125rem]"
         photoClassName="sm:w-[47.5%]"
       />
       <FeaturePanel
         id="news-events"
         tone="light"
-        title="News & Events"
-        description={
-          "Stay informed about the latest\nnews, achievements and upcoming\nevents at IMS."
-        }
-        linkLabel="View Latest News"
+        text={newsEvents}
         image={newsEventsImage}
-        alt="School performance on stage in front of a full auditorium"
         contentClassName="lg:pt-[1.85rem] lg:pl-[2.45rem]"
         photoClassName="sm:w-[52.5%]"
       />

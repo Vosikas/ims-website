@@ -1,42 +1,56 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { Fragment, useState } from "react";
+import type { Dictionary } from "@/app/[lang]/dictionaries";
+import { localeCookie, type Locale } from "@/app/[lang]/locales";
 import { CloseIcon, MenuIcon, SearchIcon } from "@/components/icons";
-import { Logo } from "@/components/logo";
+import { Logo, type LogoLink } from "@/components/logo";
 
-const navItems = [
-  { label: "Home", href: "/", current: true },
-  { label: "About Us", href: "#about" },
-  { label: "Our Educational Pathways", href: "#pathways" },
-  { label: "School Life", href: "#school-life" },
-  { label: "News & Events", href: "#news-events" },
-  { label: "Contact & Careers", href: "#contact" },
-];
+const languages = [
+  { locale: "el", code: "GR", name: "Ελληνικά" },
+  { locale: "en", code: "EN", name: "English" },
+] as const;
 
-function LanguageSwitch() {
+const oneYearInSeconds = 60 * 60 * 24 * 365;
+
+function LanguageSwitch({ lang, label }: { lang: Locale; label: string }) {
   return (
-    <div className="flex items-center text-sm tracking-[0.03em] lg:text-[0.62rem]">
-      <button type="button" className="cursor-pointer transition-colors hover:text-gold">
-        GR
-      </button>
-      <span className="mx-[0.3rem] h-[0.8rem] w-px bg-navy/50" />
-      <button
-        type="button"
-        aria-pressed="true"
-        className="cursor-pointer transition-colors hover:text-gold"
-      >
-        EN
-      </button>
+    <div
+      role="group"
+      aria-label={label}
+      className="flex items-center text-sm tracking-[0.03em] lg:text-[0.62rem]"
+    >
+      {languages.map(({ locale, code, name }, index) => (
+        <Fragment key={locale}>
+          {index > 0 && <span className="mx-[0.3rem] h-[0.8rem] w-px bg-navy/50" />}
+          {/* A plain link on purpose: a client navigation keeps the previous language's page
+              hidden in the DOM, leaving duplicate ids and an empty document title. */}
+          <a
+            href={`/${locale}`}
+            hrefLang={locale}
+            aria-label={`${code}, ${name}`}
+            aria-current={locale === lang ? "true" : undefined}
+            onClick={() => {
+              document.cookie = `${localeCookie}=${locale}; path=/; max-age=${oneYearInSeconds}; samesite=lax`;
+            }}
+            className={`p-1 transition-colors hover:text-gold lg:p-0 ${
+              locale === lang ? "font-semibold" : ""
+            }`}
+          >
+            {code}
+          </a>
+        </Fragment>
+      ))}
     </div>
   );
 }
 
-function SearchButton() {
+function SearchButton({ label }: { label: string }) {
   return (
     <button
       type="button"
-      aria-label="Search"
+      aria-label={label}
       className="cursor-pointer text-gold transition-colors hover:text-navy"
     >
       <SearchIcon className="size-5 lg:size-[0.82rem]" />
@@ -47,16 +61,34 @@ function SearchButton() {
 const admissionsClassName =
   "inline-flex items-center justify-center rounded-[0.25rem] bg-gold font-medium text-white transition-colors hover:bg-navy";
 
-export function SiteHeader() {
+type SiteHeaderProps = {
+  lang: Locale;
+  dict: Dictionary["header"];
+  logo: LogoLink;
+};
+
+export function SiteHeader({ lang, dict, logo }: SiteHeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const navItems = [
+    { label: dict.nav.home, href: logo.href, current: true },
+    { label: dict.nav.about, href: "#about" },
+    { label: dict.nav.pathways, href: "#pathways" },
+    { label: dict.nav.schoolLife, href: "#school-life" },
+    { label: dict.nav.newsEvents, href: "#news-events" },
+    { label: dict.nav.contact, href: "#contact" },
+  ];
 
   return (
     <header className="relative z-30 bg-white">
       <div className="flex h-[4.6875rem] items-center px-5 lg:pr-[3.0625rem] lg:pl-[3rem]">
-        <Logo />
+        <Logo link={logo} />
 
-        <nav aria-label="Main" className="relative top-[0.61rem] ml-[3.58rem] hidden lg:block">
-          <ul className="flex gap-[0.96rem]">
+        <nav
+          aria-label={dict.nav.label}
+          className="relative top-[0.61rem] ml-[3.58rem] hidden lg:block el:ml-[2.2rem]"
+        >
+          <ul className="flex gap-[0.96rem] el:gap-[0.62rem]">
             {navItems.map((item) => (
               <li key={item.label}>
                 <Link
@@ -74,20 +106,20 @@ export function SiteHeader() {
         </nav>
 
         <div className="relative top-[0.1rem] ml-auto hidden items-center lg:flex">
-          <LanguageSwitch />
+          <LanguageSwitch lang={lang} label={dict.language} />
           <span className="mr-[0.9rem] ml-[0.8rem] h-[0.9rem] w-px bg-navy/20" />
-          <SearchButton />
+          <SearchButton label={dict.search} />
           <Link
             href="#contact"
             className={`${admissionsClassName} ml-[1.35rem] h-[2.25rem] w-[5.375rem] text-[0.62rem]`}
           >
-            Admissions
+            {dict.admissions}
           </Link>
         </div>
 
         <button
           type="button"
-          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          aria-label={menuOpen ? dict.closeMenu : dict.openMenu}
           aria-expanded={menuOpen}
           aria-controls="mobile-menu"
           onClick={() => setMenuOpen((open) => !open)}
@@ -102,7 +134,7 @@ export function SiteHeader() {
           id="mobile-menu"
           className="absolute inset-x-0 top-full border-t border-line bg-white px-5 pb-6 shadow-lg lg:hidden"
         >
-          <nav aria-label="Main">
+          <nav aria-label={dict.nav.label}>
             <ul className="divide-y divide-line">
               {navItems.map((item) => (
                 <li key={item.label}>
@@ -119,14 +151,14 @@ export function SiteHeader() {
             </ul>
           </nav>
           <div className="mt-4 flex items-center gap-5">
-            <LanguageSwitch />
-            <SearchButton />
+            <LanguageSwitch lang={lang} label={dict.language} />
+            <SearchButton label={dict.search} />
             <Link
               href="#contact"
               onClick={() => setMenuOpen(false)}
               className={`${admissionsClassName} ml-auto h-11 px-6 text-sm`}
             >
-              Admissions
+              {dict.admissions}
             </Link>
           </div>
         </div>

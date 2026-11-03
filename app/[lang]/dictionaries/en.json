@@ -1,0 +1,104 @@
+{
+  "metadata": {
+    "title": "IMS | International Metropolitan School",
+    "description": "Educating minds. Shaping futures. From the early years to university and beyond, IMS offers a complete and inspiring educational experience."
+  },
+  "logo": {
+    "label": "IMS International Metropolitan School, home"
+  },
+  "header": {
+    "nav": {
+      "label": "Main",
+      "home": "Home",
+      "about": "About Us",
+      "pathways": "Our Educational Pathways",
+      "schoolLife": "School Life",
+      "newsEvents": "News & Events",
+      "contact": "Contact & Careers"
+    },
+    "language": "Language",
+    "search": "Search",
+    "admissions": "Admissions",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
+  "hero": {
+    "name": "International\nMetropolitan School",
+    "tagline": "Educating minds.\nShaping futures.",
+    "alt": "Pupils with backpacks walking along a sunlit, tree-lined path towards the IMS school building",
+    "scrollLabel": "Scroll to our educational pathways"
+  },
+  "pathways": {
+    "eyebrow": "Our Educational Pathways",
+    "title": "Six journeys. One school community.",
+    "intro": "From the early years to university and beyond, IMS offers a complete and inspiring educational experience.",
+    "items": {
+      "nursery": {
+        "title": "Nursery",
+        "description": "A safe and nurturing start\nfor a bright future.",
+        "alt": "Young boy playing with building blocks in a nursery classroom"
+      },
+      "kindergarten": {
+        "title": "Kindergarten",
+        "description": "Curiosity. Creativity.\nConfidence.",
+        "alt": "Smiling girl holding up hands covered in colourful paint"
+      },
+      "primarySchool": {
+        "title": "Primary School",
+        "description": "Building knowledge,\nskills and character.",
+        "alt": "Primary school pupil writing at a desk in a classroom"
+      },
+      "middleSchool": {
+        "title": "Middle School\n(IB MYP)",
+        "description": "Exploring ideas.\nMaking connections.",
+        "alt": "Student looking through a microscope during a science lesson"
+      },
+      "ibDiploma": {
+        "title": "IB Diploma",
+        "description": "A global perspective\nfor lifelong opportunities.",
+        "alt": "Three students working together at a library table"
+      },
+      "generalLyceum": {
+        "title": "General Lyceum",
+        "description": "A strong foundation\nfor the future.",
+        "alt": "Lyceum student writing during a lesson"
+      }
+    }
+  },
+  "pillars": {
+    "label": "What IMS stands for",
+    "items": {
+      "academicExcellence": {
+        "title": "Academic Excellence",
+        "description": "High-quality education with\na global outlook."
+      },
+      "supportiveCommunity": {
+        "title": "A Supportive Community",
+        "description": "Students, families and educators\ngrowing together."
+      },
+      "internationalPerspective": {
+        "title": "International Perspective",
+        "description": "Opening minds to a connected world."
+      },
+      "holisticDevelopment": {
+        "title": "Holistic Development",
+        "description": "Nurturing talent, character\nand well-being."
+      }
+    }
+  },
+  "schoolLife": {
+    "title": "School Life",
+    "description": "Learning goes beyond the classroom.\nDiscover our activities, clubs, sports\nand community events.",
+    "linkLabel": "Explore School Life",
+    "alt": "Students playing basketball on an outdoor court"
+  },
+  "newsEvents": {
+    "title": "News & Events",
+    "description": "Stay informed about the latest\nnews, achievements and upcoming\nevents at IMS.",
+    "linkLabel": "View Latest News",
+    "alt": "School performance on stage in front of a full auditorium"
+  },
+  "footer": {
+    "tagline": "A world of opportunities\nstarts here."
+  }
+}

@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Greek text runs longer than the design's English, so some elements need their own sizes. */
+@custom-variant el (&:lang(el));
+
 @theme {
   --color-navy: #0c2744;
   --color-gold: #ad8948;
@@ -16,10 +19,24 @@
 }
 
 @theme inline {
-  --font-sans: var(--font-figtree);
-  --font-serif: var(--font-newsreader);
+  --font-sans: var(--font-text);
+  --font-serif: var(--font-heading);
+  --font-script: var(--font-accent);
   --font-display: var(--font-playfair);
-  --font-script: var(--font-sacramento);
+  --font-brand: var(--font-figtree);
+}
+
+/* The design's fonts have no Greek letters, so the Greek page uses its own set. */
+:root {
+  --font-text: var(--font-figtree);
+  --font-heading: var(--font-newsreader);
+  --font-accent: var(--font-sacramento);
+}
+
+:root:lang(el) {
+  --font-text: var(--font-commissioner);
+  --font-heading: var(--font-source-serif);
+  --font-accent: var(--font-garamond);
 }
 
 /*
