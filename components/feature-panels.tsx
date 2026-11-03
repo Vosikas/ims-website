@@ -24,12 +24,21 @@ type FeaturePanelProps = {
   id: string;
   tone: keyof typeof tones;
   text: Dictionary["schoolLife"];
+  href: string;
   image: StaticImageData;
   contentClassName: string;
   photoClassName: string;
 };
 
-function FeaturePanel({ id, tone, text, image, contentClassName, photoClassName }: FeaturePanelProps) {
+function FeaturePanel({
+  id,
+  tone,
+  text,
+  href,
+  image,
+  contentClassName,
+  photoClassName,
+}: FeaturePanelProps) {
   const styles = tones[tone];
 
   return (
@@ -50,7 +59,7 @@ function FeaturePanel({ id, tone, text, image, contentClassName, photoClassName 
           {text.description}
         </p>
         <Link
-          href={`#${id}`}
+          href={href}
           className={`mt-[1rem] inline-flex h-11 items-center gap-[0.8rem] rounded-full px-[1.05rem] text-xs font-bold tracking-[0.05em] uppercase transition-colors lg:h-[1.85rem] lg:text-[0.6rem] ${styles.button}`}
         >
           {text.linkLabel}
@@ -79,15 +88,17 @@ function FeaturePanel({ id, tone, text, image, contentClassName, photoClassName 
 type FeaturePanelsProps = {
   schoolLife: Dictionary["schoolLife"];
   newsEvents: Dictionary["newsEvents"];
+  newsHref: string;
 };
 
-export function FeaturePanels({ schoolLife, newsEvents }: FeaturePanelsProps) {
+export function FeaturePanels({ schoolLife, newsEvents, newsHref }: FeaturePanelsProps) {
   return (
     <div className="mt-[2.06rem] mb-[0.125rem] grid lg:grid-cols-2">
       <FeaturePanel
         id="school-life"
         tone="dark"
         text={schoolLife}
+        href="#school-life"
         image={schoolLifeImage}
         contentClassName="lg:pt-[1.5rem] lg:pl-[3.125rem]"
         photoClassName="sm:w-[47.5%]"
@@ -96,6 +107,7 @@ export function FeaturePanels({ schoolLife, newsEvents }: FeaturePanelsProps) {
         id="news-events"
         tone="light"
         text={newsEvents}
+        href={newsHref}
         image={newsEventsImage}
         contentClassName="lg:pt-[1.85rem] lg:pl-[2.45rem]"
         photoClassName="sm:w-[52.5%]"

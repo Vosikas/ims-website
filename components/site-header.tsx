@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { Fragment, useState } from "react";
+import { usePathname } from "next/navigation";
+import { Fragment, Suspense, useState } from "react";
 import type { Dictionary } from "@/app/[lang]/dictionaries";
 import { localeCookie, type Locale } from "@/app/[lang]/locales";
 import { CloseIcon, MenuIcon, SearchIcon } from "@/components/icons";
@@ -14,7 +15,16 @@ const languages = [
 
 const oneYearInSeconds = 60 * 60 * 24 * 365;
 
-function LanguageSwitch({ lang, label }: { lang: Locale; label: string }) {
+type LanguageSwitchProps = {
+  lang: Locale;
+  label: string;
+  pathname: string | null;
+};
+
+function LanguageSwitch({ lang, label, pathname }: LanguageSwitchProps) {
+  // The same page in the other language: "/en/news" becomes "/el/news".
+  const pathWithinLanguage = pathname?.slice(lang.length + 1) ?? "";
+
   return (
     <div
       role="group"
@@ -27,7 +37,7 @@ function LanguageSwitch({ lang, label }: { lang: Locale; label: string }) {
           {/* A plain link on purpose: a client navigation keeps the previous language's page
               hidden in the DOM, leaving duplicate ids and an empty document title. */}
           <a
-            href={`/${locale}`}
+            href={`/${locale}${pathWithinLanguage}`}
             hrefLang={locale}
             aria-label={`${code}, ${name}`}
             aria-current={locale === lang ? "true" : undefined}
@@ -67,15 +77,31 @@ type SiteHeaderProps = {
   logo: LogoLink;
 };
 
-export function SiteHeader({ lang, dict, logo }: SiteHeaderProps) {
+function HeaderWithPathname(props: SiteHeaderProps) {
+  return <HeaderContent {...props} pathname={usePathname()} />;
+}
+
+// The current path isn't known while prerendering an article that was published after the
+// build, so usePathname needs a boundary. Its fallback is the same header without the path.
+export function SiteHeader(props: SiteHeaderProps) {
+  return (
+    <Suspense fallback={<HeaderContent {...props} pathname={null} />}>
+      <HeaderWithPathname {...props} />
+    </Suspense>
+  );
+}
+
+function HeaderContent({ lang, dict, logo, pathname }: SiteHeaderProps & { pathname: string | null }) {
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const home = logo.href;
+  const news = `${home}/news`;
   const navItems = [
-    { label: dict.nav.home, href: logo.href, current: true },
-    { label: dict.nav.about, href: "#about" },
-    { label: dict.nav.pathways, href: "#pathways" },
-    { label: dict.nav.schoolLife, href: "#school-life" },
-    { label: dict.nav.newsEvents, href: "#news-events" },
+    { label: dict.nav.home, href: home, current: pathname === home },
+    { label: dict.nav.about, href: `${home}#about` },
+    { label: dict.nav.pathways, href: `${home}#pathways` },
+    { label: dict.nav.schoolLife, href: `${home}#school-life` },
+    { label: dict.nav.newsEvents, href: news, current: pathname?.startsWith(news) },
     { label: dict.nav.contact, href: "#contact" },
   ];
 
@@ -106,7 +132,7 @@ export function SiteHeader({ lang, dict, logo }: SiteHeaderProps) {
         </nav>
 
         <div className="relative top-[0.1rem] ml-auto hidden items-center lg:flex">
-          <LanguageSwitch lang={lang} label={dict.language} />
+          <LanguageSwitch lang={lang} label={dict.language} pathname={pathname} />
           <span className="mr-[0.9rem] ml-[0.8rem] h-[0.9rem] w-px bg-navy/20" />
           <SearchButton label={dict.search} />
           <Link
@@ -151,7 +177,7 @@ export function SiteHeader({ lang, dict, logo }: SiteHeaderProps) {
             </ul>
           </nav>
           <div className="mt-4 flex items-center gap-5">
-            <LanguageSwitch lang={lang} label={dict.language} />
+            <LanguageSwitch lang={lang} label={dict.language} pathname={pathname} />
             <SearchButton label={dict.search} />
             <Link
               href="#contact"

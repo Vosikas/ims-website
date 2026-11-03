@@ -2,6 +2,7 @@ import Image, { type StaticImageData } from "next/image";
 import Link from "next/link";
 import type { Dictionary } from "@/app/[lang]/dictionaries";
 import { ArrowRightIcon } from "@/components/icons";
+import { SectionHeading } from "@/components/section-heading";
 import generalLyceum from "@/public/images/home/general-lyceum.jpg";
 import ibDiploma from "@/public/images/home/ib-diploma.jpg";
 import kindergarten from "@/public/images/home/kindergarten.jpg";
@@ -92,18 +93,13 @@ export function Pathways({ dict }: { dict: PathwaysDict }) {
       aria-labelledby="pathways-heading"
       className="mx-auto max-w-[64rem] scroll-mt-4 px-5 pt-[1.75rem] text-center lg:pr-[2.5625rem] lg:pl-[2.8125rem]"
     >
-      <p className="flex items-center justify-center gap-[0.625rem] text-[0.78rem] tracking-[0.02em] uppercase">
-        <span className="h-[0.1rem] w-[1.875rem] bg-gold" />
-        {dict.eyebrow}
-        <span className="h-[0.1rem] w-[1.875rem] bg-gold" />
-      </p>
-      <h2
+      <SectionHeading
+        as="h2"
         id="pathways-heading"
-        className="mt-[0.12rem] font-serif text-[2.1rem] leading-[1.15] font-medium lg:text-[1.97rem] lg:leading-[2.6rem] el:font-semibold"
-      >
-        {dict.title}
-      </h2>
-      <p className="mt-[0.18rem] text-base leading-[1.4] lg:text-[0.9rem]">{dict.intro}</p>
+        eyebrow={dict.eyebrow}
+        title={dict.title}
+        intro={dict.intro}
+      />
 
       <ul className="mt-[1.28rem] grid gap-[0.55rem] text-left sm:grid-cols-2 lg:grid-cols-3">
         {pathways.map((pathway) => (

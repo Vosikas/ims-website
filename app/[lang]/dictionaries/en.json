@@ -100,5 +100,21 @@
   },
   "footer": {
     "tagline": "A world of opportunities\nstarts here."
+  },
+  "news": {
+    "eyebrow": "News & Events",
+    "title": "What's happening at IMS",
+    "intro": "Stay informed about the latest news, achievements and upcoming events at IMS.",
+    "metaTitle": "News & Events | IMS",
+    "readMore": "Read more",
+    "back": "All news",
+    "more": "More news",
+    "empty": "There is no news to show yet. Please check back soon.",
+    "sampleNotice": "Sample content: these articles are placeholders until the site is connected to WordPress."
+  },
+  "notFound": {
+    "title": "We couldn't find this page",
+    "text": "It may have been moved or removed.",
+    "link": "Back to the homepage"
   }
 }
