@@ -1,0 +1,38 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy: #0c2744;
+  --color-gold: #ad8948;
+  --color-mist: #ebeef2;
+  --color-line: #e6eaef;
+
+  --color-nursery: #eecac1;
+  --color-nursery-ink: #8f2a2c;
+  --color-kindergarten: #fad777;
+  --color-primary-school: #bcd5bf;
+  --color-middle-school: #bdd0e0;
+  --color-ib-diploma: #dccae2;
+  --color-general-lyceum: #aabfd0;
+}
+
+@theme inline {
+  --font-sans: var(--font-figtree);
+  --font-serif: var(--font-newsreader);
+  --font-display: var(--font-playfair);
+  --font-script: var(--font-sacramento);
+}
+
+/*
+ * The design is drawn at 1024px wide. Sizes are in rem with 1rem = 16 design
+ * pixels, and the root scales with the viewport from 1024px to 1536px, so the
+ * desktop layout keeps the design's proportions across that range.
+ */
+html {
+  font-size: clamp(100%, 1.5625vw, 150%);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
