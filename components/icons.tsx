@@ -33,15 +33,6 @@ export function ChevronDownIcon(props: IconProps) {
   );
 }
 
-export function SearchIcon(props: IconProps) {
-  return (
-    <Icon viewBox="0 0 20 20" strokeWidth={1.5} {...props}>
-      <circle cx="8.5" cy="8.5" r="6.75" />
-      <path d="m13.5 13.5 5 5" />
-    </Icon>
-  );
-}
-
 export function MenuIcon(props: IconProps) {
   return (
     <Icon viewBox="0 0 24 24" strokeWidth={1.6} {...props}>

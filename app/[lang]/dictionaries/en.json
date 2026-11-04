@@ -17,13 +17,11 @@
       "contact": "Contact"
     },
     "language": "Language",
-    "search": "Search",
     "admissions": "Admissions",
     "openMenu": "Open menu",
     "closeMenu": "Close menu"
   },
   "hero": {
-    "name": "International\nMetropolitan School",
     "tagline": "Educating minds.\nShaping futures.",
     "alt": "Pupils with backpacks walking along a sunlit, tree-lined path towards the IMS school building",
     "scrollLabel": "Scroll to our educational pathways"

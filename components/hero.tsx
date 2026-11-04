@@ -23,8 +23,10 @@ export function Hero({ dict }: { dict: Dictionary["hero"] }) {
           <span className="block font-display text-[5.5rem] leading-[0.95] font-medium tracking-[0.01em] lg:-ml-[0.17rem] lg:text-[7.22rem] lg:leading-[0.87]">
             IMS
           </span>
-          <span className="mt-[0.5rem] block text-[0.95rem] leading-[1.45] font-light tracking-[0.2em] whitespace-pre-line [word-spacing:0.2em] uppercase lg:mt-[0.42rem] lg:text-[1.26rem] lg:leading-[1.85rem] el:tracking-[0.14em] el:[word-spacing:0] el:lg:text-[1.2rem]">
-            {dict.name}
+          <span className="mt-[0.5rem] block font-brand text-[0.95rem] leading-[1.45] font-light tracking-[0.2em] [word-spacing:0.2em] uppercase lg:mt-[0.42rem] lg:text-[1.26rem] lg:leading-[1.85rem]">
+            International
+            <br />
+            Metropolitan School
           </span>
         </h1>
         <span className="mt-[0.68rem] block h-[0.17rem] w-[3.4rem] bg-gold" />

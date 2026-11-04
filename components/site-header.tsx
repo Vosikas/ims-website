@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { Fragment, Suspense, useState } from "react";
 import type { Dictionary } from "@/app/[lang]/dictionaries";
 import { localeCookie, type Locale } from "@/app/[lang]/locales";
-import { CloseIcon, MenuIcon, SearchIcon } from "@/components/icons";
+import { CloseIcon, MenuIcon } from "@/components/icons";
 import { Logo, type LogoLink } from "@/components/logo";
 
 const languages = [
@@ -53,18 +53,6 @@ function LanguageSwitch({ lang, label, pathname }: LanguageSwitchProps) {
         </Fragment>
       ))}
     </div>
-  );
-}
-
-function SearchButton({ label }: { label: string }) {
-  return (
-    <button
-      type="button"
-      aria-label={label}
-      className="cursor-pointer text-gold transition-colors hover:text-navy"
-    >
-      <SearchIcon className="size-5 lg:size-[0.82rem]" />
-    </button>
   );
 }
 
@@ -134,8 +122,6 @@ function HeaderContent({ lang, dict, logo, pathname }: SiteHeaderProps & { pathn
 
         <div className="relative top-[0.1rem] ml-auto hidden items-center lg:flex">
           <LanguageSwitch lang={lang} label={dict.language} pathname={pathname} />
-          <span className="mr-[0.9rem] ml-[0.8rem] h-[0.9rem] w-px bg-navy/20" />
-          <SearchButton label={dict.search} />
           <Link
             href={contact}
             className={`${admissionsClassName} ml-[1.35rem] h-[2.25rem] w-[5.375rem] text-[0.62rem]`}
@@ -179,7 +165,6 @@ function HeaderContent({ lang, dict, logo, pathname }: SiteHeaderProps & { pathn
           </nav>
           <div className="mt-4 flex items-center gap-5">
             <LanguageSwitch lang={lang} label={dict.language} pathname={pathname} />
-            <SearchButton label={dict.search} />
             <Link
               href={contact}
               onClick={() => setMenuOpen(false)}
