@@ -1,6 +1,5 @@
 import Image, { type StaticImageData } from "next/image";
 import Link from "next/link";
-import type { ReactNode } from "react";
 import type { Dictionary } from "@/app/[lang]/dictionaries";
 import { ArrowRightIcon } from "@/components/icons";
 import { SectionHeading } from "@/components/section-heading";
@@ -19,8 +18,8 @@ type Pathway = {
   image: StaticImageData;
   panelClassName: string;
   accentClassName?: string;
-  /** A page of another app that the site serves through a rewrite (see next.config.ts). */
-  appHref?: string;
+  /** Where the card leads, if not just back to this section. */
+  href?: string;
 };
 
 const pathways: Pathway[] = [
@@ -40,7 +39,8 @@ const pathways: Pathway[] = [
     number: "06",
     image: generalLyceum,
     panelClassName: "bg-general-lyceum",
-    appHref: "/panhellenicexams",
+    // The Panhellenic exams login. It has its own root layout, so Next does a full page load.
+    href: "/panhellenicexams",
   },
 ];
 
@@ -49,35 +49,13 @@ type PathwayCardProps = {
   text: PathwaysDict["items"][Pathway["id"]];
 };
 
-type CardLinkProps = {
-  appHref?: string;
-  className: string;
-  children: ReactNode;
-};
-
-// Another app's page needs a full page load: Next's client-side navigation can't render it.
-function CardLink({ appHref, className, children }: CardLinkProps) {
-  if (appHref) {
-    return (
-      <a href={appHref} className={className}>
-        {children}
-      </a>
-    );
-  }
-  return (
-    <Link href="#pathways" className={className}>
-      {children}
-    </Link>
-  );
-}
-
 function PathwayCard({ pathway, text }: PathwayCardProps) {
-  const { number, image, panelClassName, accentClassName, appHref } = pathway;
+  const { number, image, panelClassName, accentClassName, href = "#pathways" } = pathway;
 
   return (
     <li>
-      <CardLink
-        appHref={appHref}
+      <Link
+        href={href}
         className="group flex h-full flex-col overflow-hidden rounded-[0.3rem] transition-shadow hover:shadow-lg"
       >
         <div className="relative aspect-[306/131] overflow-hidden">
@@ -112,7 +90,7 @@ function PathwayCard({ pathway, text }: PathwayCardProps) {
             <ArrowRightIcon className="w-[0.85rem]" />
           </span>
         </div>
-      </CardLink>
+      </Link>
     </li>
   );
 }

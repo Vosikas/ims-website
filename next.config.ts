@@ -1,41 +1,20 @@
 import type { NextConfig } from "next";
 
-// The Panhellenic exams login is its own app (EXAMS_PANEL: a frontend and a backend). The site
-// serves both under /panhellenicexams by proxying, so visitors never leave the site's address.
-// Without these variables a production build simply has no /panhellenicexams.
-const isDev = process.env.NODE_ENV === "development";
-const panhellenicFrontend =
-  process.env.PANHELLENIC_FRONTEND_URL ?? (isDev ? "http://localhost:5173" : undefined);
+// The Panhellenic exams login (app/panhellenicexams) talks to its own backend (the BACKEND repo,
+// Quarkus). The site proxies /panhellenicexams/api to it, so the browser sees one origin and the
+// session cookie works without CORS. Without PANHELLENIC_API_URL a production build has no API,
+// and the login only works in mock mode.
 const panhellenicApi =
-  process.env.PANHELLENIC_API_URL ?? (isDev ? "http://localhost:8080" : undefined);
+  process.env.PANHELLENIC_API_URL ??
+  (process.env.NODE_ENV === "development" ? "http://localhost:8080" : undefined);
 
 const nextConfig: NextConfig = {
   async rewrites() {
     return {
-      // beforeFiles, so app/[lang] doesn't take "panhellenicexams" for a language.
-      beforeFiles: [
-        // The API first: the frontend rule below would also match these paths.
-        ...(panhellenicApi
-          ? [
-              {
-                source: "/panhellenicexams/api/:path*",
-                destination: `${panhellenicApi}/api/:path*`,
-              },
-            ]
-          : []),
-        ...(panhellenicFrontend
-          ? [
-              {
-                source: "/panhellenicexams",
-                destination: `${panhellenicFrontend}/panhellenicexams/`,
-              },
-              {
-                source: "/panhellenicexams/:path*",
-                destination: `${panhellenicFrontend}/panhellenicexams/:path*`,
-              },
-            ]
-          : []),
-      ],
+      // beforeFiles, so the catch-all app/panhellenicexams/[...missing] doesn't take these paths.
+      beforeFiles: panhellenicApi
+        ? [{ source: "/panhellenicexams/api/:path*", destination: `${panhellenicApi}/api/:path*` }]
+        : [],
       afterFiles: [],
       fallback: [],
     };
