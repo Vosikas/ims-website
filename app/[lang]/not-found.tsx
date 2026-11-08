@@ -4,9 +4,8 @@ import { getDictionary } from "./dictionaries";
 import { defaultLocale, hasLocale } from "./locales";
 
 export default async function NotFound() {
-  // undefined is possible since app/panhellenicexams has a root layout without [lang].
   const param = await lang();
-  const locale = param !== undefined && hasLocale(param) ? param : defaultLocale;
+  const locale = hasLocale(param) ? param : defaultLocale;
   const { notFound } = await getDictionary(locale);
 
   return (

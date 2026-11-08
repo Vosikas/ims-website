@@ -18,8 +18,6 @@ type Pathway = {
   image: StaticImageData;
   panelClassName: string;
   accentClassName?: string;
-  /** Where the card leads, if not just back to this section. */
-  href?: string;
 };
 
 const pathways: Pathway[] = [
@@ -34,14 +32,7 @@ const pathways: Pathway[] = [
   { id: "primarySchool", number: "03", image: primarySchool, panelClassName: "bg-primary-school" },
   { id: "middleSchool", number: "04", image: middleSchool, panelClassName: "bg-middle-school" },
   { id: "ibDiploma", number: "05", image: ibDiploma, panelClassName: "bg-ib-diploma" },
-  {
-    id: "generalLyceum",
-    number: "06",
-    image: generalLyceum,
-    panelClassName: "bg-general-lyceum",
-    // The Panhellenic exams login. It has its own root layout, so Next does a full page load.
-    href: "/panhellenicexams",
-  },
+  { id: "generalLyceum", number: "06", image: generalLyceum, panelClassName: "bg-general-lyceum" },
 ];
 
 type PathwayCardProps = {
@@ -50,12 +41,12 @@ type PathwayCardProps = {
 };
 
 function PathwayCard({ pathway, text }: PathwayCardProps) {
-  const { number, image, panelClassName, accentClassName, href = "#pathways" } = pathway;
+  const { number, image, panelClassName, accentClassName } = pathway;
 
   return (
     <li>
       <Link
-        href={href}
+        href="#pathways"
         className="group flex h-full flex-col overflow-hidden rounded-[0.3rem] transition-shadow hover:shadow-lg"
       >
         <div className="relative aspect-[306/131] overflow-hidden">

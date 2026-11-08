@@ -9,13 +9,6 @@
   --color-mist: #ebeef2;
   --color-line: #e6eaef;
 
-  /* Used by the Panhellenic exams login (app/panhellenicexams). */
-  --color-gold-light: #bd9a5b;
-  --color-field: #7d8ca0; /* input borders: 3:1 against white, which line doesn't reach */
-  --color-ink-muted: #4a5b70;
-  --color-danger: #b42318;
-  --color-danger-soft: #fef3f2;
-
   --color-nursery: #eecac1;
   --color-nursery-ink: #8f2a2c;
   --color-kindergarten: #fad777;
