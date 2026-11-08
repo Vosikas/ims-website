@@ -1,5 +1,6 @@
 import Image, { type StaticImageData } from "next/image";
 import Link from "next/link";
+import type { ReactNode } from "react";
 import type { Dictionary } from "@/app/[lang]/dictionaries";
 import { ArrowRightIcon } from "@/components/icons";
 import { SectionHeading } from "@/components/section-heading";
@@ -18,6 +19,8 @@ type Pathway = {
   image: StaticImageData;
   panelClassName: string;
   accentClassName?: string;
+  /** Where the card leads, if not just back to this section. */
+  href?: string;
 };
 
 const pathways: Pathway[] = [
@@ -32,7 +35,13 @@ const pathways: Pathway[] = [
   { id: "primarySchool", number: "03", image: primarySchool, panelClassName: "bg-primary-school" },
   { id: "middleSchool", number: "04", image: middleSchool, panelClassName: "bg-middle-school" },
   { id: "ibDiploma", number: "05", image: ibDiploma, panelClassName: "bg-ib-diploma" },
-  { id: "generalLyceum", number: "06", image: generalLyceum, panelClassName: "bg-general-lyceum" },
+  {
+    id: "generalLyceum",
+    number: "06",
+    image: generalLyceum,
+    panelClassName: "bg-general-lyceum",
+    href: "/panhellenicexams",
+  },
 ];
 
 type PathwayCardProps = {
@@ -40,13 +49,35 @@ type PathwayCardProps = {
   text: PathwaysDict["items"][Pathway["id"]];
 };
 
+type CardLinkProps = {
+  href?: string;
+  className: string;
+  children: ReactNode;
+};
+
+// /panhellenicexams redirects to another site, which needs a full page load.
+function CardLink({ href, className, children }: CardLinkProps) {
+  if (href) {
+    return (
+      <a href={href} className={className}>
+        {children}
+      </a>
+    );
+  }
+  return (
+    <Link href="#pathways" className={className}>
+      {children}
+    </Link>
+  );
+}
+
 function PathwayCard({ pathway, text }: PathwayCardProps) {
-  const { number, image, panelClassName, accentClassName } = pathway;
+  const { number, image, panelClassName, accentClassName, href } = pathway;
 
   return (
     <li>
-      <Link
-        href="#pathways"
+      <CardLink
+        href={href}
         className="group flex h-full flex-col overflow-hidden rounded-[0.3rem] transition-shadow hover:shadow-lg"
       >
         <div className="relative aspect-[306/131] overflow-hidden">
@@ -81,7 +112,7 @@ function PathwayCard({ pathway, text }: PathwayCardProps) {
             <ArrowRightIcon className="w-[0.85rem]" />
           </span>
         </div>
-      </Link>
+      </CardLink>
     </li>
   );
 }
