@@ -7,8 +7,9 @@ export function MockBadge() {
   return (
     <p
       title={el.backendNote.mockBadgeTitle}
-      // At the end of the page on phones, where a fixed badge would cover the form.
-      className="mx-4 mb-4 w-fit rounded-full border border-amber-500 bg-amber-100 px-3 py-1 text-xs font-bold tracking-wide text-amber-950 shadow-sm md:fixed md:bottom-3 md:left-3 md:z-50 md:m-0"
+      // At the end of the page on phones, where a fixed badge would cover the form. On wider
+      // screens it sits clear of Next's dev indicator in the corner.
+      className="mx-4 mb-4 w-fit rounded-full border border-amber-500 bg-amber-100 px-3 py-1 text-xs font-bold tracking-wide text-amber-950 shadow-sm md:fixed md:bottom-5 md:left-16 md:z-50 md:m-0"
     >
       {el.backendNote.mockBadge}
     </p>

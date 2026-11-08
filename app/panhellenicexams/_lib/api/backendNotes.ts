@@ -5,7 +5,10 @@ export type BackendNoteId =
   | "session"
   | "continue"
   | "login"
-  | "signup"
+  | "signup-registry"
+  | "signup-verify"
+  | "signup-resend"
+  | "signup-complete"
   | "logout"
   | "csrf"
   | "redirect"
@@ -28,11 +31,23 @@ export const BACKEND_NOTES: Record<BackendNoteId, BackendNoteInfo> = {
   },
   login: {
     endpoint: "POST /api/auth/login",
-    when: "Πατάτε «Σύνδεση»: έλεγχος στοιχείων, cookie session και redirectUrl.",
+    when: "Πατάτε «Σύνδεση»: έλεγχος αριθμού μητρώου και κωδικού, cookie session και redirectUrl.",
   },
-  signup: {
-    endpoint: "POST /api/auth/signup",
-    when: "Πατάτε «Δημιουργία λογαριασμού»: ο λογαριασμός μένει σε αναμονή έγκρισης.",
+  "signup-registry": {
+    endpoint: "POST /api/auth/signup/registry",
+    when: "Βήμα 1: αντιστοίχιση με το pool αριθμών μητρώου και αποστολή κωδικού στο email του σχολείου.",
+  },
+  "signup-verify": {
+    endpoint: "POST /api/auth/signup/verify",
+    when: "Βήμα 2: έλεγχος του κωδικού επιβεβαίωσης.",
+  },
+  "signup-resend": {
+    endpoint: "POST /api/auth/signup/resend",
+    when: "Βήμα 2: νέος κωδικός, με όριο αποστολών.",
+  },
+  "signup-complete": {
+    endpoint: "POST /api/auth/signup/complete",
+    when: "Βήμα 3: αποθήκευση email και κωδικού στη βάση.",
   },
   logout: {
     endpoint: "POST /api/auth/logout",
@@ -48,7 +63,7 @@ export const BACKEND_NOTES: Record<BackendNoteId, BackendNoteInfo> = {
   },
   "password-policy": {
     endpoint: "Κανόνας κωδικού",
-    when: `Ίδιος σε frontend και backend. Τώρα: τουλάχιστον ${PASSWORD_POLICY.minLength} χαρακτήρες.`,
+    when: `Ίδιος σε frontend και backend. Προτεινόμενος: τουλάχιστον ${PASSWORD_POLICY.minLength} χαρακτήρες.`,
   },
   "forgot-password": {
     endpoint: "Φάση 2",

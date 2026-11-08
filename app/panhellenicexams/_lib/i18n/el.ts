@@ -1,4 +1,4 @@
-import type { ApiErrorCode, FieldErrorCode, RequestableRole, Role } from "../api/types";
+import type { ApiErrorCode, Role } from "../api/types";
 import { PASSWORD_POLICY } from "../config/passwordPolicy";
 
 /** Codes the frontend shows a message for: the API's, plus one of its own. */
@@ -26,61 +26,56 @@ export const el = {
     capsLock: "Το Caps Lock είναι ενεργό.",
   },
 
-  errorSummaryTitle: "Διορθώστε τα παρακάτω για να συνεχίσετε:",
-
   login: {
     title: "Σύνδεση",
-    subtitle: "Μπείτε με τον λογαριασμό σας στην πλατφόρμα των Πανελληνίων.",
-    email: "Email",
+    subtitle: "Μπείτε με τον αριθμό μητρώου και τον κωδικό σας.",
+    registryNumber: "Αριθμός μητρώου",
     password: "Κωδικός",
     rememberMe: "Να με θυμάσαι",
     forgotPassword: "Ξεχάσατε τον κωδικό;",
     submit: "Σύνδεση",
     submitting: "Γίνεται σύνδεση…",
-    noAccount: "Δεν έχετε λογαριασμό;",
-    signupLink: "Εγγραφή",
+    noAccount: "Πρώτη φορά εδώ;",
+    signupLink: "Δημιουργία λογαριασμού",
     checkingSession: "Έλεγχος σύνδεσης…",
     redirecting: "Μεταφορά στο eClass…",
   },
 
   signup: {
     title: "Δημιουργία λογαριασμού",
-    subtitle: "Ζητήστε πρόσβαση στην πλατφόρμα των Πανελληνίων.",
-    allRequired: "Όλα τα πεδία είναι υποχρεωτικά.",
-    firstName: "Όνομα",
-    lastName: "Επώνυμο",
+    stepsLabel: "Βήματα εγγραφής",
+    steps: ["Αριθμός μητρώου", "Επιβεβαίωση", "Λογαριασμός"],
+    continue: "Συνέχεια",
+    continuing: "Παρακαλώ περιμένετε…",
+    back: "Πίσω",
+    haveAccount: "Έχετε ήδη λογαριασμό;",
+    loginLink: "Σύνδεση",
+
+    registrySubtitle: "Ξεκινήστε με τον αριθμό μητρώου που σας έδωσε το σχολείο.",
+    registryNumber: "Αριθμός μητρώου",
+
+    codeSubtitle: (email: string) => `Στείλαμε κωδικό επιβεβαίωσης στο ${email}.`,
+    codeHint: "Είναι το email που έχει δηλώσει το σχολείο για αυτόν τον αριθμό μητρώου.",
+    code: "Κωδικός επιβεβαίωσης",
+    resend: "Δεν τον λάβατε; Αποστολή ξανά",
+    resent: "Στείλαμε νέο κωδικό.",
+
+    accountSubtitle: "Δηλώστε το email σας και διαλέξτε κωδικό πρόσβασης.",
     email: "Email",
-    roleLegend: "Ρόλος που ζητάτε",
-    roleHint: "Ο ρόλος εγκρίνεται από τη γραμματεία του σχολείου.",
-    parentNote: "Τη σύνδεση με το παιδί σας την κάνει η γραμματεία, μετά την έγκριση.",
-    password: "Κωδικός",
+    password: "Κωδικός πρόσβασης",
     passwordHint: `Τουλάχιστον ${PASSWORD_POLICY.minLength} χαρακτήρες. Μια φράση που θυμάστε εύκολα είναι καλή επιλογή.`,
     confirmPassword: "Επιβεβαίωση κωδικού",
     terms: "Αποδέχομαι τους όρους χρήσης και την πολιτική απορρήτου.",
     termsMore: "Πού είναι οι όροι;",
     termsPlaceholder:
       "Τα κείμενα των όρων χρήσης και της πολιτικής απορρήτου θα προστεθούν πριν από το πιλοτικό.",
-    submit: "Δημιουργία λογαριασμού",
-    submitting: "Αποστολή…",
-    haveAccount: "Έχετε ήδη λογαριασμό;",
-    loginLink: "Σύνδεση",
-    roleRequired: "Επιλέξτε τον ρόλο που ζητάτε.",
-    termsRequired: "Για να συνεχίσετε, αποδεχτείτε τους όρους.",
+    submit: "Ολοκλήρωση εγγραφής",
   },
 
-  pending: {
-    title: "Ο λογαριασμός σας περιμένει έγκριση",
-    receivedFor: (email: string) => `Λάβαμε το αίτημα για το ${email}.`,
-    received: "Λάβαμε το αίτημά σας.",
-    stepsLabel: "Τι ακολουθεί",
-    steps: [
-      { text: "Λάβαμε το αίτημά σας", status: "Ολοκληρώθηκε" },
-      { text: "Η γραμματεία ελέγχει τα στοιχεία και τον ρόλο σας", status: "Σε εξέλιξη" },
-      { text: "Συνδέεστε στην πλατφόρμα", status: "Επόμενο" },
-    ],
-    afterApproval:
-      "Μόλις εγκριθεί ο λογαριασμός, θα μπορείτε να συνδεθείτε με το email και τον κωδικό σας.",
-    backToLogin: "Επιστροφή στη σύνδεση",
+  signupDone: {
+    title: "Ο λογαριασμός σας είναι έτοιμος",
+    subtitle: "Μπορείτε πλέον να συνδεθείτε με τον αριθμό μητρώου και τον κωδικό σας.",
+    toLogin: "Μετάβαση στη σύνδεση",
   },
 
   forgotPassword: {
@@ -89,7 +84,7 @@ export const el = {
     phaseBadge: "Φάση 2",
     notYet:
       "Η επαναφορά κωδικού με email έρχεται στη Φάση 2. Μέχρι τότε, επικοινωνήστε με τη γραμματεία του σχολείου.",
-    email: "Email",
+    registryNumber: "Αριθμός μητρώου",
     submit: "Αποστολή συνδέσμου",
     backToLogin: "Επιστροφή στη σύνδεση",
   },
@@ -99,12 +94,12 @@ export const el = {
     subtitle: "Προσομοίωση: εδώ τελειώνει το login και ξεκινά το eClass.",
     loading: "Φόρτωση…",
     name: "Όνομα",
-    email: "Email",
+    registryNumber: "Αριθμός μητρώου",
     role: "Ρόλος",
     wouldGo: "Με πραγματικό backend, ο browser θα πήγαινε τώρα εδώ:",
     codePlaceholder: "<κωδικός-μίας-χρήσης>",
     openEclass: "Άνοιγμα eClass σε νέα καρτέλα",
-    openEclassHint: "Θα ανοίξει όταν στηθεί το WordPress στο Local.",
+    openEclassHint: "Θα ανοίξει όταν στηθεί το eClass.",
     logout: "Αποσύνδεση",
     loggingOut: "Αποσύνδεση…",
   },
@@ -117,7 +112,7 @@ export const el = {
 
   backendNote: {
     title: "Χρειάζεται backend",
-    mockNow: "Τώρα: απαντήσεις mock από το _lib/api/auth.mock.ts",
+    mockNow: "Τώρα: απαντήσεις mock από το _lib/api/auth.mock.ts, χωρίς κανέναν έλεγχο",
     realNow: "Τώρα: πραγματικός backend",
     contract: "Συμβόλαιο:",
     mockBadge: "MOCK API",
@@ -131,20 +126,16 @@ export const el = {
     ADMIN: "Γραμματεία",
   } satisfies Record<Role, string>,
 
-  roleDescriptions: {
-    STUDENT: "Υλικό, εργασίες και οι βαθμοί μου.",
-    PARENT: "Η πρόοδος του παιδιού μου.",
-    TEACHER: "Υλικό, εργασίες και βαθμοί των τμημάτων μου.",
-  } satisfies Record<RequestableRole, string>,
-
   apiErrors: {
     VALIDATION_ERROR: "Ελέγξτε τα στοιχεία της φόρμας.",
     UNAUTHENTICATED: "Η σύνδεσή σας έληξε. Συνδεθείτε ξανά.",
-    INVALID_CREDENTIALS: "Λάθος email ή κωδικός.",
-    ACCOUNT_PENDING: "Ο λογαριασμός σας δεν έχει εγκριθεί ακόμα από τη γραμματεία.",
+    INVALID_CREDENTIALS: "Λάθος αριθμός μητρώου ή κωδικός.",
     ACCOUNT_LOCKED: "Ο λογαριασμός σας είναι κλειδωμένος. Επικοινωνήστε με τη γραμματεία.",
     TOO_MANY_ATTEMPTS: "Πολλές αποτυχημένες προσπάθειες. Δοκιμάστε ξανά σε λίγα λεπτά.",
-    EMAIL_TAKEN: "Υπάρχει ήδη λογαριασμός με αυτό το email.",
+    REGISTRY_NOT_FOUND: "Δεν βρέθηκε αυτός ο αριθμός μητρώου. Επικοινωνήστε με τη γραμματεία.",
+    REGISTRY_ALREADY_USED: "Υπάρχει ήδη λογαριασμός με αυτόν τον αριθμό μητρώου.",
+    CODE_INVALID: "Ο κωδικός επιβεβαίωσης δεν είναι σωστός.",
+    CODE_EXPIRED: "Ο κωδικός επιβεβαίωσης έληξε. Ζητήστε νέο.",
     CSRF_INVALID: "Η σελίδα έληξε. Ανανεώστε τη και δοκιμάστε ξανά.",
     NETWORK_ERROR: "Δεν υπάρχει σύνδεση με τον server. Δοκιμάστε ξανά σε λίγο.",
     UNKNOWN: "Κάτι πήγε στραβά. Δοκιμάστε ξανά.",
@@ -154,23 +145,4 @@ export const el = {
 
   tooManyAttemptsIn: (minutes: number) =>
     `Πολλές αποτυχημένες προσπάθειες. Δοκιμάστε ξανά σε ${minutes} ${minutes === 1 ? "λεπτό" : "λεπτά"}.`,
-
-  fieldError(code: FieldErrorCode, label: string): string {
-    switch (code) {
-      case "REQUIRED":
-        return `Συμπληρώστε το πεδίο «${label}».`;
-      case "INVALID_EMAIL":
-        return "Γράψτε ένα έγκυρο email, π.χ. onoma@example.com.";
-      case "TOO_SHORT":
-        return `Ο κωδικός χρειάζεται τουλάχιστον ${PASSWORD_POLICY.minLength} χαρακτήρες.`;
-      case "TOO_LONG":
-        return `Ο κωδικός μπορεί να έχει έως ${PASSWORD_POLICY.maxLength} χαρακτήρες.`;
-      case "MISMATCH":
-        return "Οι δύο κωδικοί δεν ταιριάζουν.";
-      case "EMAIL_TAKEN":
-        return "Υπάρχει ήδη λογαριασμός με αυτό το email.";
-      case "NOT_ACCEPTED":
-        return "Για να συνεχίσετε, αποδεχτείτε τους όρους.";
-    }
-  },
 };

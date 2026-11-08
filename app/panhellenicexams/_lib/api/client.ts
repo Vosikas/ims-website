@@ -8,10 +8,12 @@ const BACKEND_CODES: readonly BackendErrorCode[] = [
   "VALIDATION_ERROR",
   "UNAUTHENTICATED",
   "INVALID_CREDENTIALS",
-  "ACCOUNT_PENDING",
   "ACCOUNT_LOCKED",
   "TOO_MANY_ATTEMPTS",
-  "EMAIL_TAKEN",
+  "REGISTRY_NOT_FOUND",
+  "REGISTRY_ALREADY_USED",
+  "CODE_INVALID",
+  "CODE_EXPIRED",
   "CSRF_INVALID",
 ];
 
@@ -59,7 +61,7 @@ export async function apiRequest<T>(
 
   if (method !== "GET") {
     // BACKEND-NEEDED[csrf]: ο backend δίνει CSRF token και το ελέγχει σε κάθε POST.
-    // Πότε: σε κάθε login, signup, continue και logout. Η προσωρινή υπόθεση είναι cookie
+    // Πότε: σε κάθε login, βήμα εγγραφής, continue και logout. Η προσωρινή υπόθεση είναι cookie
     // XSRF-TOKEN που το frontend στέλνει πίσω στο header X-CSRF-Token. Ο backend αποφασίζει.
     // Συμβόλαιο: docs/panhellenic/API_CONTRACT.md#csrf
     const csrfToken = readCookie("XSRF-TOKEN");

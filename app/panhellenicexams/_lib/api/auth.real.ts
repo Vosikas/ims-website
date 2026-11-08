@@ -28,18 +28,42 @@ export const realAuth: AuthApi = {
 
   login(request) {
     // BACKEND-NEEDED[login]: POST /api/auth/login
-    // Πότε: ο χρήστης πατά «Σύνδεση» στη σελίδα σύνδεσης.
+    // Πότε: ο χρήστης γράφει αριθμό μητρώου και κωδικό και πατά «Σύνδεση».
     // Στέλνει: LoginRequest · Περιμένει: LoginResponse (και cookie session) ή ApiError
     // Συμβόλαιο: docs/panhellenic/API_CONTRACT.md#login
     return apiRequest("POST", "/auth/login", request);
   },
 
-  signup(request) {
-    // BACKEND-NEEDED[signup]: POST /api/auth/signup
-    // Πότε: ο χρήστης πατά «Δημιουργία λογαριασμού» στη σελίδα εγγραφής.
-    // Στέλνει: SignupRequest · Περιμένει: SignupResponse ή ApiError
-    // Συμβόλαιο: docs/panhellenic/API_CONTRACT.md#signup
-    return apiRequest("POST", "/auth/signup", request);
+  startSignup(request) {
+    // BACKEND-NEEDED[signup-registry]: POST /api/auth/signup/registry
+    // Πότε: βήμα 1 της εγγραφής. Ο αριθμός μητρώου αντιστοιχίζεται στο pool και φεύγει ο κωδικός.
+    // Στέλνει: StartSignupRequest · Περιμένει: StartSignupResponse ή ApiError
+    // Συμβόλαιο: docs/panhellenic/API_CONTRACT.md#signup-registry
+    return apiRequest("POST", "/auth/signup/registry", request);
+  },
+
+  async verifySignupCode(request) {
+    // BACKEND-NEEDED[signup-verify]: POST /api/auth/signup/verify
+    // Πότε: βήμα 2 της εγγραφής. Ο χρήστης γράφει τον κωδικό που πήρε στο email.
+    // Στέλνει: VerifySignupRequest · Περιμένει: 204 ή ApiError
+    // Συμβόλαιο: docs/panhellenic/API_CONTRACT.md#signup-verify
+    await apiRequest<void>("POST", "/auth/signup/verify", request);
+  },
+
+  async resendSignupCode(request) {
+    // BACKEND-NEEDED[signup-resend]: POST /api/auth/signup/resend
+    // Πότε: βήμα 2 της εγγραφής. Ο χρήστης πατά «Αποστολή ξανά».
+    // Στέλνει: ResendSignupRequest · Περιμένει: 204 ή ApiError
+    // Συμβόλαιο: docs/panhellenic/API_CONTRACT.md#signup-resend
+    await apiRequest<void>("POST", "/auth/signup/resend", request);
+  },
+
+  completeSignup(request) {
+    // BACKEND-NEEDED[signup-complete]: POST /api/auth/signup/complete
+    // Πότε: βήμα 3 της εγγραφής. Αποθηκεύονται το email και ο κωδικός στη βάση.
+    // Στέλνει: CompleteSignupRequest · Περιμένει: CompleteSignupResponse ή ApiError
+    // Συμβόλαιο: docs/panhellenic/API_CONTRACT.md#signup-complete
+    return apiRequest("POST", "/auth/signup/complete", request);
   },
 
   async logout() {

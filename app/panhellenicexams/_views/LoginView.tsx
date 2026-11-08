@@ -7,24 +7,16 @@ import { AuthLayout } from "../_components/AuthLayout";
 import { BackendNote } from "../_components/BackendNote";
 import { Button } from "../_components/Button";
 import { Checkbox } from "../_components/Checkbox";
-import { ErrorSummary } from "../_components/ErrorSummary";
 import { PasswordField } from "../_components/PasswordField";
 import { Spinner } from "../_components/Spinner";
 import { TextField } from "../_components/TextField";
-import { continueSession, getSession, login } from "../_lib/api/auth";
-import { errorCode } from "../_lib/api/errors";
-import type { FieldErrorCode } from "../_lib/api/types";
+import { auth } from "../_lib/api/auth";
 import { APP } from "../_lib/config/apps";
 import { useFollowRedirect } from "../_lib/hooks";
 import { el } from "../_lib/i18n/el";
 import { apiErrorMessage } from "../_lib/messages";
 import { routes } from "../_lib/routes";
 import { textLink } from "../_lib/styles";
-import { validateEmail, validateRequired } from "../_lib/validation";
-
-type Field = "email" | "password";
-const FIELDS: Field[] = ["email", "password"];
-const fieldId = (field: Field) => `login-${field}`;
 
 type Phase = "checking" | "form" | "redirecting";
 
@@ -33,11 +25,9 @@ export function LoginView() {
   const followRedirect = useFollowRedirect();
 
   const [phase, setPhase] = useState<Phase>("checking");
-  const [email, setEmail] = useState("");
+  const [registryNumber, setRegistryNumber] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
-  const [touched, setTouched] = useState<Partial<Record<Field, boolean>>>({});
-  const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [serverError, setServerError] = useState<string | null>(null);
 
@@ -46,7 +36,8 @@ export function LoginView() {
     let active = true;
 
     // BACKEND-NEEDED[session]: εδώ ρωτάμε τον backend αν ο χρήστης είναι ήδη συνδεδεμένος.
-    getSession()
+    auth
+      .getSession()
       .then(async (user) => {
         if (!active) return;
         if (!user) {
@@ -54,7 +45,7 @@ export function LoginView() {
           return;
         }
         // BACKEND-NEEDED[continue]: υπάρχει session, οπότε ζητάμε νέο redirectUrl χωρίς ξανά login.
-        const { redirectUrl } = await continueSession({ app: APP });
+        const { redirectUrl } = await auth.continueSession({ app: APP });
         if (!active) return;
         setPhase("redirecting");
         if (!followRedirect(redirectUrl)) {
@@ -69,44 +60,27 @@ export function LoginView() {
 
     return () => {
       active = false;
+      // Next keeps visited pages alive but hidden; on return this page should check again.
+      setPhase("checking");
     };
   }, [followRedirect]);
-
-  const errors: Record<Field, FieldErrorCode | undefined> = {
-    email: validateEmail(email),
-    password: validateRequired(password),
-  };
-  const labels: Record<Field, string> = { email: t.email, password: t.password };
-  const messageFor = (field: Field) => {
-    const code = errors[field];
-    return code && (submitted || touched[field]) ? el.fieldError(code, labels[field]) : undefined;
-  };
-  const summary = submitted
-    ? FIELDS.flatMap((field) => {
-        const message = messageFor(field);
-        return message ? [{ id: fieldId(field), message }] : [];
-      })
-    : [];
-
-  const markTouched = (field: Field) => setTouched((current) => ({ ...current, [field]: true }));
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (submitting) return;
 
-    setSubmitted(true);
     setServerError(null);
-    const firstInvalid = FIELDS.find((field) => errors[field]);
-    if (firstInvalid) {
-      document.getElementById(fieldId(firstInvalid))?.focus();
-      return;
-    }
-
     setSubmitting(true);
     try {
-      // BACKEND-NEEDED[login]: εδώ η φόρμα στέλνεται στον backend.
-      const { redirectUrl } = await login({ email: email.trim(), password, rememberMe, app: APP });
-      // Next keeps visited pages alive but hidden, so the password must not stay in this form.
+      // BACKEND-NEEDED[login]: εδώ ο αριθμός μητρώου και ο κωδικός στέλνονται στον backend.
+      const { redirectUrl } = await auth.login({
+        registryNumber: registryNumber.trim(),
+        password,
+        rememberMe,
+        app: APP,
+      });
+      // Next keeps visited pages alive but hidden, so the credentials must not stay in this form.
+      setRegistryNumber("");
       setPassword("");
       setPhase("redirecting");
       if (!followRedirect(redirectUrl)) {
@@ -115,9 +89,6 @@ export function LoginView() {
       }
     } catch (error) {
       setServerError(apiErrorMessage(error));
-      if (errorCode(error) === "INVALID_CREDENTIALS") {
-        document.getElementById(fieldId("password"))?.focus();
-      }
     } finally {
       setSubmitting(false);
     }
@@ -142,32 +113,24 @@ export function LoginView() {
           {serverError}
         </Alert>
       )}
-      <ErrorSummary items={summary} />
 
       <form noValidate onSubmit={handleSubmit} className="mt-6 space-y-5">
         <TextField
-          id={fieldId("email")}
-          label={t.email}
-          type="email"
-          inputMode="email"
-          autoComplete="email"
-          autoCapitalize="none"
-          spellCheck={false}
+          id="login-registry"
+          label={t.registryNumber}
+          inputMode="numeric"
+          autoComplete="username"
           required
-          value={email}
-          onChange={setEmail}
-          onBlur={() => markTouched("email")}
-          error={messageFor("email")}
+          value={registryNumber}
+          onChange={setRegistryNumber}
         />
         <PasswordField
-          id={fieldId("password")}
+          id="login-password"
           label={t.password}
           autoComplete="current-password"
           required
           value={password}
           onChange={setPassword}
-          onBlur={() => markTouched("password")}
-          error={messageFor("password")}
         />
 
         <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-3">

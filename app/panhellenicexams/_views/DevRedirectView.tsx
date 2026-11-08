@@ -7,7 +7,7 @@ import { AuthLayout } from "../_components/AuthLayout";
 import { BackendNote } from "../_components/BackendNote";
 import { Button } from "../_components/Button";
 import { Spinner } from "../_components/Spinner";
-import { getSession, logout } from "../_lib/api/auth";
+import { auth } from "../_lib/api/auth";
 import type { SessionUser } from "../_lib/api/types";
 import { env } from "../_lib/config/env";
 import { el } from "../_lib/i18n/el";
@@ -26,7 +26,8 @@ export function DevRedirectView() {
 
   useEffect(() => {
     let active = true;
-    getSession()
+    auth
+      .getSession()
       .then((current) => {
         if (!active) return;
         if (current) setUser(current);
@@ -45,8 +46,11 @@ export function DevRedirectView() {
     setLoggingOut(true);
     try {
       // BACKEND-NEEDED[logout]: εδώ ο backend σβήνει το session.
-      await logout();
+      await auth.logout();
     } finally {
+      // Next keeps visited pages alive but hidden, so the next login must find this page clean.
+      setUser(null);
+      setLoggingOut(false);
       router.replace(routes.login);
     }
   }
@@ -68,8 +72,8 @@ export function DevRedirectView() {
               <dd>
                 {user.firstName} {user.lastName}
               </dd>
-              <dt className="font-semibold">{t.email}</dt>
-              <dd className="break-all">{user.email}</dd>
+              <dt className="font-semibold">{t.registryNumber}</dt>
+              <dd className="break-all">{user.registryNumber}</dd>
               <dt className="font-semibold">{t.role}</dt>
               <dd>{el.roles[user.role]}</dd>
             </dl>

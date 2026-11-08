@@ -2,7 +2,7 @@
 export const routes = {
   login: "/panhellenicexams",
   signup: "/panhellenicexams/signup",
-  pending: "/panhellenicexams/signup/pending",
+  signupDone: "/panhellenicexams/signup/done",
   forgotPassword: "/panhellenicexams/forgot-password",
   /** Mock mode only: stands in for the eClass. */
   devRedirect: "/panhellenicexams/dev/redirect",

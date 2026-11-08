@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 export default function PanhellenicLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
-    <html lang="el" className={`${fontVariables} antialiased`}>
+    <html lang="el" data-scroll-behavior="smooth" className={`${fontVariables} antialiased`}>
       <body className="bg-white font-sans text-navy">{children}</body>
     </html>
   );

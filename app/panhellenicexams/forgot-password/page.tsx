@@ -12,7 +12,7 @@ import { textLink } from "../_lib/styles";
 export const metadata: Metadata = { title: el.forgotPassword.title };
 
 // BACKEND-NEEDED[forgot-password]: Φάση 2. Ο backend θα στέλνει email με σύνδεσμο επαναφοράς.
-// Πότε: ο χρήστης γράφει το email του και πατά «Αποστολή συνδέσμου».
+// Πότε: ο χρήστης γράφει τον αριθμό μητρώου του και πατά «Αποστολή συνδέσμου».
 // Συμβόλαιο: docs/panhellenic/API_CONTRACT.md#forgot-password
 /** A visible placeholder: the form is drawn but disabled until the backend can send email. */
 export default function ForgotPasswordPage() {
@@ -29,7 +29,7 @@ export default function ForgotPasswordPage() {
           {t.phaseBadge}
         </span>
         <div className="space-y-5" aria-disabled="true">
-          <TextField id="forgot-email" label={t.email} type="email" value="" disabled />
+          <TextField id="forgot-registry" label={t.registryNumber} value="" disabled />
           <Button className="w-full" disabled>
             {t.submit}
           </Button>

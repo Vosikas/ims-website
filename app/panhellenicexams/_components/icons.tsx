@@ -55,15 +55,6 @@ export function CheckIcon(props: IconProps) {
   );
 }
 
-export function ClockIcon(props: IconProps) {
-  return (
-    <Icon {...props}>
-      <circle cx="12" cy="12" r="9" />
-      <path d="M12 7v5l3 2" />
-    </Icon>
-  );
-}
-
 export function AlertIcon(props: IconProps) {
   return (
     <Icon {...props}>
@@ -86,34 +77,6 @@ export function PlugIcon(props: IconProps) {
   return (
     <Icon {...props}>
       <path d="M9 2v5M15 2v5M6 7h12v4a6 6 0 0 1-12 0V7zM12 17v5" />
-    </Icon>
-  );
-}
-
-export function StudentIcon(props: IconProps) {
-  return (
-    <Icon {...props}>
-      <path d="M2 5h6a4 4 0 0 1 4 4v11a3 3 0 0 0-3-3H2zM22 5h-6a4 4 0 0 0-4 4v11a3 3 0 0 1 3-3h7z" />
-    </Icon>
-  );
-}
-
-export function ParentIcon(props: IconProps) {
-  return (
-    <Icon {...props}>
-      <circle cx="9" cy="7.5" r="3.5" />
-      <path d="M2.5 20a6.5 6.5 0 0 1 13 0" />
-      <circle cx="17.5" cy="10" r="2.5" />
-      <path d="M16.5 15a4.8 4.8 0 0 1 5.5 4.9" />
-    </Icon>
-  );
-}
-
-export function TeacherIcon(props: IconProps) {
-  return (
-    <Icon {...props}>
-      <rect x="3" y="3.5" width="18" height="12" rx="1.5" />
-      <path d="M7 8.5h6M7 11.5h10M8 20.5l4-5 4 5" />
     </Icon>
   );
 }

@@ -6,6 +6,12 @@ html {
   font-size: 100%;
 }
 
+/* Edge adds its own reveal button to password inputs, next to the form's. */
+input::-ms-reveal,
+input::-ms-clear {
+  display: none;
+}
+
 /* Gold on white is 3.2:1, enough for a focus indicator. */
 :focus-visible {
   outline: 2px solid var(--color-gold);
