@@ -3,15 +3,16 @@
 import {
   useCallback,
   useEffect,
-  useLayoutEffect,
   useRef,
   useState,
+  useSyncExternalStore,
   type ReactNode,
 } from "react";
 import { ArrowRightIcon } from "@/components/icons";
 import { InlineScript } from "./inline-script";
 
 const OVERLAY_ID = "ims-intro";
+const LOCK_ID = "ims-intro-lock";
 // Once per browser tab: someone coming back to the home page shouldn't sit through it again.
 const SEEN_KEY = "ims-intro-seen";
 // "?intro" in the address plays it again, for showing it to someone.
@@ -44,22 +45,39 @@ function readSeen() {
   }
 }
 
+const REDUCED_MOTION = "(prefers-reduced-motion: reduce)";
+
 function shouldPlay(playWithReducedMotion: boolean) {
   if (new RegExp(FORCE_PATTERN).test(window.location.search)) return true;
   if (readSeen()) return false;
-  return playWithReducedMotion || !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  return playWithReducedMotion || !window.matchMedia(REDUCED_MOTION).matches;
+}
+
+// Decided once per page load. It flips to false when the intro ends, so coming back to the home
+// page through the site's own links doesn't play it again.
+let decision: boolean | undefined;
+const noSubscription = () => () => {};
+
+function subscribeToMotion(onChange: () => void) {
+  const query = window.matchMedia(REDUCED_MOTION);
+  query.addEventListener("change", onChange);
+  return () => query.removeEventListener("change", onChange);
 }
 
 // The same decision as shouldPlay, made before the first paint on a full page load, so a visitor
 // who has already seen the intro never sees it flash.
 function decisionScript(playWithReducedMotion: boolean) {
-  return `(function(){var o=document.getElementById("${OVERLAY_ID}");if(!o)return;var seen=false;try{seen=sessionStorage.getItem("${SEEN_KEY}")!==null}catch(e){}var play=new RegExp("${FORCE_PATTERN}").test(location.search)||(!seen&&(${playWithReducedMotion}||!matchMedia("(prefers-reduced-motion: reduce)").matches));if(play){document.documentElement.style.overflow="hidden"}else{o.hidden=true}})()`;
+  return `(function(){var o=document.getElementById("${OVERLAY_ID}");if(!o)return;var seen=false;try{seen=sessionStorage.getItem("${SEEN_KEY}")!==null}catch(e){}var play=new RegExp("${FORCE_PATTERN}").test(location.search)||(!seen&&(${playWithReducedMotion}||!matchMedia("(prefers-reduced-motion: reduce)").matches));if(!play){o.hidden=true;var l=document.getElementById("${LOCK_ID}");if(l)l.media="not all"}})()`;
 }
 
 /** Makes everything but the overlay unreachable, and returns how to undo it. */
 function isolate(overlay: HTMLElement) {
   const made: Element[] = [];
-  for (let node: HTMLElement | null = overlay; node && node !== document.body; node = node.parentElement) {
+  for (
+    let node: HTMLElement | null = overlay;
+    node && node !== document.body;
+    node = node.parentElement
+  ) {
     for (const sibling of Array.from(node.parentElement?.children ?? [])) {
       if (sibling !== node && !(sibling as HTMLElement).inert && sibling.tagName !== "SCRIPT") {
         (sibling as HTMLElement).inert = true;
@@ -80,32 +98,29 @@ export function IntroOverlay({
 }: IntroOverlayProps) {
   const overlayRef = useRef<HTMLDivElement>(null);
   const [phase, setPhase] = useState<"playing" | "leaving" | "gone">("playing");
-  const [reducedMotion, setReducedMotion] = useState(false);
+  // The server always renders the overlay; the inline script below hides it before paint when it
+  // shouldn't play, and React then drops it.
+  const allowed = useSyncExternalStore(
+    noSubscription,
+    () => (decision ??= shouldPlay(playWithReducedMotion)),
+    () => true,
+  );
+  const reducedMotion = useSyncExternalStore(
+    subscribeToMotion,
+    () => window.matchMedia(REDUCED_MOTION).matches,
+    () => false,
+  );
 
-  // Decided before paint, so on a client-side navigation the overlay never shows for a frame.
-  useLayoutEffect(() => {
-    if (!shouldPlay(playWithReducedMotion)) {
-      setPhase("gone");
-      return;
-    }
-    setReducedMotion(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
-  }, [playWithReducedMotion]);
-
-  const playing = phase !== "gone";
+  const playing = phase === "leaving" || (phase === "playing" && allowed);
 
   useEffect(() => {
     const overlay = overlayRef.current;
     if (!playing || !overlay) return;
-    const root = document.documentElement;
-    root.style.overflow = "hidden";
-    const restore = isolate(overlay);
-    return () => {
-      root.style.overflow = "";
-      restore();
-    };
+    return isolate(overlay);
   }, [playing]);
 
   const finish = useCallback(() => {
+    decision = false;
     try {
       sessionStorage.setItem(SEEN_KEY, "1");
     } catch {
@@ -144,6 +159,11 @@ export function IntroOverlay({
 
   return (
     <>
+      {/* The page under the overlay doesn't scroll. A style element rather than the html's own
+          style, which React owns; the inline script switches it off when the intro won't play. */}
+      <style id={LOCK_ID} suppressHydrationWarning>
+        {"html{overflow:hidden}"}
+      </style>
       <div
         id={OVERLAY_ID}
         ref={overlayRef}
