@@ -1,10 +1,5 @@
 import type { Dictionary } from "@/app/[lang]/dictionaries";
-import {
-  CommunityIcon,
-  GlobeIcon,
-  GraduationCapIcon,
-  LeavesIcon,
-} from "@/components/icons";
+import { CommunityIcon, GlobeIcon, GraduationCapIcon, LeavesIcon } from "@/components/icons";
 
 type PillarsDict = Dictionary["pillars"];
 
@@ -18,9 +13,8 @@ const pillars = [
 export function Pillars({ dict }: { dict: PillarsDict }) {
   return (
     <section
-      id="about"
       aria-label={dict.label}
-      className="mx-auto max-w-[64rem] scroll-mt-4 px-5 lg:pr-[2.5625rem] lg:pl-[2.8125rem]"
+      className="mx-auto max-w-[64rem] px-5 lg:pr-[2.5625rem] lg:pl-[2.8125rem]"
     >
       <div className="mt-[1.55rem] border-t border-line pt-[1.25rem]">
         <ul className="grid grid-cols-1 gap-y-8 sm:grid-cols-2 lg:-mr-[1.75rem] lg:-ml-[1.25rem] lg:grid-cols-[238fr_249fr_257fr_242fr] lg:gap-y-0">

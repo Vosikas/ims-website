@@ -1,63 +1,29 @@
-import Image, { type StaticImageData } from "next/image";
+import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import type { Dictionary } from "@/app/[lang]/dictionaries";
+import type { Locale } from "@/app/[lang]/locales";
 import { ArrowRightIcon } from "@/components/icons";
 import { SectionHeading } from "@/components/section-heading";
-import generalLyceum from "@/public/images/home/general-lyceum.jpg";
-import ibDiploma from "@/public/images/home/ib-diploma.jpg";
-import kindergarten from "@/public/images/home/kindergarten.jpg";
-import middleSchool from "@/public/images/home/middle-school.jpg";
-import nursery from "@/public/images/home/nursery.jpg";
-import primarySchool from "@/public/images/home/primary-school.jpg";
+import { pathways, type Pathway } from "@/lib/pathways";
 
 type PathwaysDict = Dictionary["pathways"];
-
-type Pathway = {
-  id: keyof PathwaysDict["items"];
-  number: string;
-  image: StaticImageData;
-  panelClassName: string;
-  accentClassName?: string;
-  /** Where the card leads, if not just back to this section. */
-  href?: string;
-};
-
-const pathways: Pathway[] = [
-  {
-    id: "nursery",
-    number: "01",
-    image: nursery,
-    panelClassName: "bg-nursery",
-    accentClassName: "text-nursery-ink",
-  },
-  { id: "kindergarten", number: "02", image: kindergarten, panelClassName: "bg-kindergarten" },
-  { id: "primarySchool", number: "03", image: primarySchool, panelClassName: "bg-primary-school" },
-  { id: "middleSchool", number: "04", image: middleSchool, panelClassName: "bg-middle-school" },
-  { id: "ibDiploma", number: "05", image: ibDiploma, panelClassName: "bg-ib-diploma" },
-  {
-    id: "generalLyceum",
-    number: "06",
-    image: generalLyceum,
-    panelClassName: "bg-general-lyceum",
-    href: "/panhellenicexams",
-  },
-];
 
 type PathwayCardProps = {
   pathway: Pathway;
   text: PathwaysDict["items"][Pathway["id"]];
+  lang: Locale;
 };
 
 type CardLinkProps = {
-  href?: string;
+  href: string;
   className: string;
   children: ReactNode;
 };
 
 // /panhellenicexams redirects to another site, which needs a full page load.
 function CardLink({ href, className, children }: CardLinkProps) {
-  if (href) {
+  if (href.startsWith("/panhellenicexams")) {
     return (
       <a href={href} className={className}>
         {children}
@@ -65,19 +31,19 @@ function CardLink({ href, className, children }: CardLinkProps) {
     );
   }
   return (
-    <Link href="#pathways" className={className}>
+    <Link href={href} className={className}>
       {children}
     </Link>
   );
 }
 
-function PathwayCard({ pathway, text }: PathwayCardProps) {
-  const { number, image, panelClassName, accentClassName, href } = pathway;
+function PathwayCard({ pathway, text, lang }: PathwayCardProps) {
+  const { number, image, panelClassName, accentClassName, slug, href } = pathway;
 
   return (
     <li>
       <CardLink
-        href={href}
+        href={href ?? `/${lang}/pathways/${slug}`}
         className="group flex h-full flex-col overflow-hidden rounded-[0.3rem] transition-shadow hover:shadow-lg"
       >
         <div className="relative aspect-[306/131] overflow-hidden">
@@ -117,7 +83,7 @@ function PathwayCard({ pathway, text }: PathwayCardProps) {
   );
 }
 
-export function Pathways({ dict }: { dict: PathwaysDict }) {
+export function Pathways({ dict, lang }: { dict: PathwaysDict; lang: Locale }) {
   return (
     <section
       id="pathways"
@@ -134,7 +100,12 @@ export function Pathways({ dict }: { dict: PathwaysDict }) {
 
       <ul className="mt-[1.28rem] grid gap-[0.55rem] text-left sm:grid-cols-2 lg:grid-cols-3">
         {pathways.map((pathway) => (
-          <PathwayCard key={pathway.id} pathway={pathway} text={dict.items[pathway.id]} />
+          <PathwayCard
+            key={pathway.id}
+            pathway={pathway}
+            text={dict.items[pathway.id]}
+            lang={lang}
+          />
         ))}
       </ul>
     </section>
