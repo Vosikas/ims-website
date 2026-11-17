@@ -3,7 +3,7 @@ import Link from "next/link";
 import type { Dictionary } from "@/app/[lang]/dictionaries";
 import { ArrowRightIcon } from "@/components/icons";
 import newsEventsImage from "@/public/images/home/news-events.jpg";
-import schoolLifeImage from "@/public/images/home/school-life.jpg";
+import schoolLifeImage from "@/public/images/campus/court.jpg";
 
 const tones = {
   dark: {

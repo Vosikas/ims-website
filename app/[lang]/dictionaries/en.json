@@ -84,11 +84,37 @@
       }
     }
   },
+  "campus": {
+    "title": "Our campus",
+    "intro": "A look inside the school.",
+    "items": {
+      "entrance": {
+        "caption": "The entrance",
+        "alt": "The front of the building with the IMS logo and lettering"
+      },
+      "team": {
+        "caption": "Our team",
+        "alt": "IMS teachers standing together, smiling, in a bright classroom"
+      },
+      "library": {
+        "caption": "The library",
+        "alt": "A study table with a computer and yellow chairs in front of bookshelves"
+      },
+      "makerspace": {
+        "caption": "The makerspace",
+        "alt": "A 3D printer with a freshly printed yellow bust"
+      },
+      "lab": {
+        "caption": "In the computer lab",
+        "alt": "Two teachers talking among computers under LED lighting"
+      }
+    }
+  },
   "schoolLife": {
     "title": "School Life",
     "description": "Learning goes beyond the classroom.\nDiscover our activities, clubs, sports\nand community events.",
     "linkLabel": "Explore School Life",
-    "alt": "Students playing basketball on an outdoor court"
+    "alt": "The school's basketball court, with artificial-grass terraces"
   },
   "newsEvents": {
     "title": "News & Events",
