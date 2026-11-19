@@ -3,7 +3,7 @@ import Link from "next/link";
 import type { Dictionary } from "@/app/[lang]/dictionaries";
 import { ArrowRightIcon } from "@/components/icons";
 import newsEventsImage from "@/public/images/home/news-events.jpg";
-import schoolLifeImage from "@/public/images/home/school-life.jpg";
+import schoolLifeImage from "@/public/images/campus/court.jpg";
 
 const tones = {
   dark: {
@@ -88,17 +88,23 @@ function FeaturePanel({
 type FeaturePanelsProps = {
   schoolLife: Dictionary["schoolLife"];
   newsEvents: Dictionary["newsEvents"];
+  schoolLifeHref: string;
   newsHref: string;
 };
 
-export function FeaturePanels({ schoolLife, newsEvents, newsHref }: FeaturePanelsProps) {
+export function FeaturePanels({
+  schoolLife,
+  newsEvents,
+  schoolLifeHref,
+  newsHref,
+}: FeaturePanelsProps) {
   return (
     <div className="mt-[2.06rem] mb-[0.125rem] grid lg:grid-cols-2">
       <FeaturePanel
         id="school-life"
         tone="dark"
         text={schoolLife}
-        href="#school-life"
+        href={schoolLifeHref}
         image={schoolLifeImage}
         contentClassName="lg:pt-[1.5rem] lg:pl-[3.125rem]"
         photoClassName="sm:w-[47.5%]"

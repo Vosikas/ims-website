@@ -70,14 +70,14 @@ const samples: Sample[] = [
   {
     slug: "a-new-season-for-school-teams",
     date: "2026-10-19T09:00:00Z",
-    imageSrc: "/images/home/school-life.jpg",
+    imageSrc: "/images/campus/court.jpg",
     text: {
       en: {
         title: "A new season begins for our school teams",
         excerpt:
           "Training is under way as students return to the court for a new season of school sport.",
         category: "School Life",
-        alt: "Students playing basketball on an outdoor court",
+        alt: "The school's basketball court, with artificial-grass terraces",
         contentHtml:
           "<p>School sport helps students build confidence, discipline and friendships that extend well beyond the game.</p>",
       },
@@ -86,7 +86,7 @@ const samples: Sample[] = [
         excerpt:
           "Οι προπονήσεις ξεκίνησαν και οι μαθητές επιστρέφουν στο γήπεδο για μια νέα αθλητική σεζόν.",
         category: "Σχολική Ζωή",
-        alt: "Μαθητές παίζουν μπάσκετ σε υπαίθριο γήπεδο",
+        alt: "Το γήπεδο μπάσκετ του σχολείου, με κερκίδες από συνθετικό χλοοτάπητα",
         contentHtml:
           "<p>Ο σχολικός αθλητισμός βοηθά τους μαθητές να χτίσουν αυτοπεποίθηση, πειθαρχία και φιλίες που ξεπερνούν τα όρια του παιχνιδιού.</p>",
       },

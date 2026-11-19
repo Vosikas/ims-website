@@ -79,17 +79,23 @@ export function SiteHeader(props: SiteHeaderProps) {
   );
 }
 
-function HeaderContent({ lang, dict, logo, pathname }: SiteHeaderProps & { pathname: string | null }) {
+function HeaderContent({
+  lang,
+  dict,
+  logo,
+  pathname,
+}: SiteHeaderProps & { pathname: string | null }) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const home = logo.href;
   const news = `${home}/news`;
   const contact = `${home}/contact`;
+  const schoolLife = `${home}/school-life`;
   const navItems = [
     { label: dict.nav.home, href: home, current: pathname === home },
     { label: dict.nav.about, href: `${home}#about` },
     { label: dict.nav.pathways, href: `${home}#pathways` },
-    { label: dict.nav.schoolLife, href: `${home}#school-life` },
+    { label: dict.nav.schoolLife, href: schoolLife, current: pathname === schoolLife },
     { label: dict.nav.newsEvents, href: news, current: pathname?.startsWith(news) },
     { label: dict.nav.contact, href: contact, current: pathname === contact },
   ];

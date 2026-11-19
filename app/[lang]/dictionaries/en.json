@@ -63,6 +63,91 @@
       }
     }
   },
+  "pathwayPages": {
+    "back": "All pathways",
+    "glance": "At a glance",
+    "ages": "Ages",
+    "programme": "Programme",
+    "contact": "Get in touch",
+    "next": "Next pathway",
+    "items": {
+      "nursery": {
+        "ages": "8 months – 2 years",
+        "programme": "Early years",
+        "quote": "“…a child who right from the moment of birth, is so engaged in developing a relationship with the world that he develops a complex system of abilities, learning strategies and ways of organizing relationships.”",
+        "quoteSource": "The Space of Childhood, In Dialogue with Reggio Emilia, 2006",
+        "paragraphs": [
+          "Early Years refers to the nursery age, 8 months to 2 years. These first years in education play a vital role in a person’s life successes, health and emotional wellbeing.",
+          "The quality of a child’s earliest environments and the availability of appropriate experiences at the right stages of development are crucial determinants of the way each child’s brain architecture develops."
+        ],
+        "facts": [
+          "Aftercare from 2:00 to 4:00 pm for ages 8 months to 5 years, with the option to rest if parents wish.",
+          "After-school clubs during aftercare: robotics, STEM, mini tennis, ballet and music."
+        ],
+        "alt": "A young boy plays with building blocks in a nursery classroom"
+      },
+      "kindergarten": {
+        "ages": "3 – 6 years",
+        "programme": "IB PYP · Early years",
+        "quote": "",
+        "quoteSource": "",
+        "paragraphs": [
+          "Kindergarten refers to ages 3 to 6. Here at IMS we believe the environment is the third teacher: the teacher plans ahead to see what provocations can be set to inspire children’s inquiry and thinking.",
+          "We encourage our students to self-direct their own learning, to identify problems and to use their knowledge to solve them."
+        ],
+        "facts": [
+          "Outdoor classroom once a week for ages 4 to 8: “The best classroom has only the sky as its roof.”",
+          "Early Years students (ages 3 to 5) carry out four IB PYP units of inquiry each year."
+        ],
+        "alt": "A smiling girl shows hands covered in colourful paint"
+      },
+      "primarySchool": {
+        "ages": "6 – 12 years",
+        "programme": "IB Primary Years Programme",
+        "quote": "",
+        "quoteSource": "",
+        "paragraphs": [
+          "At IMS we offer a holistic, student-centred education based on effective approaches to teaching and learning. We promote intercultural understanding and respect, and our students are encouraged to reach their full potential in an inquiry-based and supportive environment.",
+          "The PYP offers an inquiry-based, transdisciplinary curriculum that builds conceptual understanding. IMS has been an accredited IB school since 2013 and is externally assessed by the International Baccalaureate every five years."
+        ],
+        "facts": [
+          "Homework Club every day from 2:00 to 4:00 pm, with a break and lunch, for students whose parents wish.",
+          "In Grade 6, the PYP Exhibition: students present their own inquiry to the whole school community.",
+          "iPad 1:1 programme from Grade 3 to Grade 6."
+        ],
+        "alt": "A primary school pupil writing at a desk in class"
+      },
+      "middleSchool": {
+        "ages": "11 – 16 years",
+        "programme": "IB Middle Years Programme",
+        "quote": "",
+        "quoteSource": "",
+        "paragraphs": [
+          "The MYP is a five-year framework that emphasizes intellectual challenge and encourages connections between studies and the real world. It focuses on “learning how to learn” through approaches to learning (ATL) skills: communication, collaboration, organization, research, and critical and creative thinking.",
+          "Students engage with eight subject groups and, through Service as Action, apply their learning to initiatives that benefit their communities. In the final year they undertake the Personal Project, an independent inquiry into a topic of their own interest."
+        ],
+        "facts": [
+          "The “Steve Jobs” iMac Lab, the “Democritus” Chemistry Lab and the “Archimedes” Physics Lab.",
+          "Field trips of 2 to 4 days every year: Kalavryta, Thessaloniki and Fort Roupel, Cyprus, Ioannina."
+        ],
+        "alt": "A student looks through a microscope during a science lesson"
+      },
+      "ibDiploma": {
+        "ages": "16 – 18 years",
+        "programme": "IB Diploma Programme",
+        "quote": "",
+        "quoteSource": "",
+        "paragraphs": [
+          "International Metropolitan School is an authorized IB school to offer the Diploma Programme from the 2026 – 2027 school year. After the first grade of Lyceum, students choose among the Panhellenic examinations, the IB Diploma Programme or IB courses, so they can prepare better and with less stress.",
+          "The DP curriculum is made up of six subject groups and the DP core: theory of knowledge, creativity, activity, service (CAS) and the extended essay. It aims to develop students with excellent breadth and depth of knowledge, who flourish physically, intellectually, emotionally and ethically."
+        ],
+        "facts": [
+          "More about the programme: www.ibo.org"
+        ],
+        "alt": "Three students working together at a library table"
+      }
+    }
+  },
   "pillars": {
     "label": "What IMS stands for",
     "items": {
@@ -84,11 +169,163 @@
       }
     }
   },
+  "about": {
+    "title": "About International Metropolitan School",
+    "lead": "The International Metropolitan School (IMS) is one of the leading educational institutions. At IMS, we offer an international education programme that combines high academic standards with values that promote multicultural understanding, respect, collaboration and creative thinking.",
+    "campuses": "We cover all levels of education over three campuses in Alimos and Argyroupoli, placing students at the heart of the learning process by focusing on their individual needs.",
+    "mission": {
+      "title": "Our mission",
+      "text": "At International Metropolitan School our mission is to nurture inquiring, knowledgeable and caring individuals. Through a holistic programme, we inspire independent, lifelong learners who understand the importance of intercultural values and respect.",
+      "emblem": "Our emblem, a lighthouse made of books, symbolizes our commitment to spreading knowledge in all directions – fostering minds that strive for a better, more peaceful world.",
+      "emblemAlt": "The IMS emblem, a lighthouse made of books, on the front of the school"
+    },
+    "history": {
+      "title": "More than 100 years of education",
+      "items": [
+        {
+          "year": "1922",
+          "text": "In Piraeus, Marika Petraki and Konstantinos Valsamidis found a model private school for boys and girls, with music and theatre and a strong emphasis on English and French."
+        },
+        {
+          "year": "2013",
+          "text": "The third generation takes over the school, adopts the International Baccalaureate curriculum and opens a bilingual Greek–English school."
+        },
+        {
+          "year": "2015",
+          "text": "ISP is certified by the International Baccalaureate Organization, and its family grows with Sporty’s International School in Elliniko."
+        },
+        {
+          "year": "2022",
+          "text": "International Metropolitan School opens in Alimos, from nursery to middle school, and from 2025-26 with a high school, the Diploma Programme and the Panhellenic Exams."
+        }
+      ]
+    }
+  },
+  "message": {
+    "title": "A message from the school's leadership",
+    "text": "With the goal of providing a safe and supportive environment, we ensure that every student feels accepted, respected and successful. Our philosophy is to educate the whole child, instilling values such as open-mindedness, resilience and critical thinking, all while following an internationally recognised curriculum.",
+    "motto": "«Πάντ’ εστίν εξευρείν, αν μη τον πόνον φεύγη τις.»",
+    "mottoMeaning": "All can be attained if one does not evade labour.",
+    "signature": "Ioannis Dimitrellos & Constantina Valsamidou – Dimitrellou",
+    "mottoAuthor": "Demosthenes (384 – 322 BC)"
+  },
+  "campus": {
+    "title": "Our campus",
+    "intro": "A look inside the school.",
+    "items": {
+      "entrance": {
+        "caption": "The entrance",
+        "alt": "The front of the building with the IMS logo and lettering"
+      },
+      "team": {
+        "caption": "Our team",
+        "alt": "IMS teachers standing together, smiling, in a bright classroom"
+      },
+      "library": {
+        "caption": "The library",
+        "alt": "A study table with a computer and yellow chairs in front of bookshelves"
+      },
+      "makerspace": {
+        "caption": "The makerspace",
+        "alt": "A 3D printer with a freshly printed yellow bust"
+      },
+      "lab": {
+        "caption": "In the computer lab",
+        "alt": "Two teachers talking among computers under LED lighting"
+      }
+    }
+  },
   "schoolLife": {
     "title": "School Life",
     "description": "Learning goes beyond the classroom.\nDiscover our activities, clubs, sports\nand community events.",
     "linkLabel": "Explore School Life",
-    "alt": "Students playing basketball on an outdoor court"
+    "alt": "The school's basketball court, with artificial-grass terraces"
+  },
+  "schoolLifePage": {
+    "metaTitle": "School Life | IMS",
+    "title": "Life at school",
+    "intro": "Learning goes beyond the classroom. A look at the everyday life, the spaces and the activities of IMS.",
+    "sections": {
+      "wellbeing": {
+        "title": "Wellbeing",
+        "text": "At our school, wellbeing is a fundamental part of who we are. Our school psychologist, SEN support and differentiation, a core IB principle, make sure every student has access to the right support.",
+        "alt": "Students working together at a table"
+      },
+      "learning": {
+        "title": "Learning support",
+        "text": "Every student has a unique learning profile. Our learning support team helps in class, in small groups or individually, and the GAL programme (Greek as an Additional Language) supports students whose first language is not Greek for at least three hours a week.",
+        "alt": "A student writing at a desk"
+      },
+      "library": {
+        "title": "The “Dimosthenis” library",
+        "text": "A vibrant place for learning through inquiry: a safe, warm space to study individually or in groups, with computers, digital books and the guidance of our librarian.",
+        "alt": "A study table with a computer and yellow chairs in front of bookshelves"
+      },
+      "science": {
+        "title": "Science",
+        "text": "Science at IMS is mostly a hands-on experience, in our “Democritus” Chemistry Lab and “Archimedes” Physics Lab, so students experience scientific concepts and understand them more deeply.",
+        "alt": "A student looking through a microscope"
+      },
+      "technology": {
+        "title": "Technology & innovation",
+        "text": "The “Steve Jobs” iMac Lab, interactive smart boards and a 1:1 iPad programme from Grade 3 to Grade 6. Toddle brings together curriculum planning, assessment and school–home communication.",
+        "alt": "The computer lab with iMacs and student projects on the shelves"
+      },
+      "makerspace": {
+        "title": "STEM lab",
+        "text": "A specially equipped technology and science lab, with computers, robotics and a 3D printer, where students’ ideas take shape.",
+        "alt": "A 3D printer with a freshly printed yellow bust"
+      },
+      "sports": {
+        "title": "Sport",
+        "text": "Football, basketball, mini tennis and fencing, and in winter skiing on Parnassos and in Kalavryta, canoeing, kayaking and hiking. The “Amisos” girls’ volleyball team, and tournaments with other international schools every year.",
+        "alt": "The school's basketball court"
+      },
+      "trips": {
+        "title": "Trips & service",
+        "text": "Field trips of 2 to 4 days for MYP students, to Kalavryta, Thessaloniki, Cyprus and Ioannina, and every year abroad with other IB schools. Students and teachers spent a week at the “Smile Community Centre” in Kenya.",
+        "alt": "A school performance on stage in front of an audience"
+      },
+      "outdoor": {
+        "title": "Outdoor classroom",
+        "text": "Once a week, for children aged 4 to 8. Children learn everywhere and all the time: outside they start their own activities, with teachers there to support them, and experience nature in as many ways as possible.",
+        "alt": "A child with hands covered in colourful paint"
+      },
+      "afterSchool": {
+        "title": "After school",
+        "text": "Aftercare from 2:00 to 4:00 pm for ages 8 months to 5 years, with robotics, STEM, mini tennis, ballet and music, and a Homework Club for primary students, with a break and lunch.",
+        "alt": "A young boy playing with building blocks"
+      }
+    },
+    "practical": {
+      "title": "Good to know",
+      "items": {
+        "canteen": {
+          "title": "Canteen & lunch",
+          "text": "Fresh homemade food every day. The youngest have homemade snacks and lunch; older pupils have the canteen and vending machines."
+        },
+        "uniform": {
+          "title": "School uniform",
+          "text": "A common dress code for ages 3 to 12, an element of unity and team spirit, with no pressure for branded clothing."
+        },
+        "transport": {
+          "title": "School buses",
+          "text": "They cover a large part of Attica, from Piraeus and the city centre to Varkiza and Lagonisi, with experienced drivers and assistants."
+        },
+        "camp": {
+          "title": "Summer Camp",
+          "text": "Four weeks after the school year ends, Monday to Friday, 8:00 am to 4:00 pm, for children aged 5 to 12, from other schools too."
+        },
+        "languages": {
+          "title": "Foreign languages",
+          "text": "A1–B1 certificates through the bilingual curriculum, and afternoon courses in English, French, German and Spanish up to C2."
+        },
+        "maths": {
+          "title": "“Theano” maths club",
+          "text": "Students who love maths solve problems together and take part in international competitions."
+        }
+      }
+    }
   },
   "newsEvents": {
     "title": "News & Events",
