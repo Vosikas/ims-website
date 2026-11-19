@@ -21,6 +21,10 @@
     "openMenu": "Open menu",
     "closeMenu": "Close menu"
   },
+  "intro": {
+    "label": "Welcome to IMS",
+    "skip": "Skip"
+  },
   "hero": {
     "tagline": "Educating minds.\nShaping futures.",
     "alt": "Pupils with backpacks walking along a sunlit, tree-lined path towards the IMS school building",
