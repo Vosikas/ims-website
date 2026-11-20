@@ -9,7 +9,10 @@ const nextConfig: NextConfig = {
     // Temporary, so browsers don't remember an address that will still change.
     return [{ source: "/panhellenicexams", destination: eclassUrl, permanent: false }];
   },
-  /* config options here */
+  // News images come from the school's WordPress (lib/news.ts accepts no other host).
+  images: {
+    remotePatterns: [{ protocol: "https", hostname: "ims.edu.gr", pathname: "/wp-content/uploads/**" }],
+  },
   cacheComponents: true,
   partialPrefetching: true,
   experimental: {

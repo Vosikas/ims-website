@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRightIcon } from "@/components/icons";
-import { NewsCard, NewsCover, NewsMeta, SampleNotice } from "@/components/news";
+import { NewsCard, NewsCover, NewsMeta, SourceLink, textLang } from "@/components/news";
 import { getNewsArticle, getNewsArticles } from "@/lib/news";
 import { getDictionary } from "../../dictionaries";
 import { hasLocale } from "../../locales";
@@ -47,22 +47,23 @@ export default async function NewsArticlePage({ params }: PageProps<"/[lang]/new
           <ArrowRightIcon className="w-[0.9rem] rotate-180 transition-transform group-hover:-translate-x-0.5" />
           {news.back}
         </Link>
-        <SampleNotice text={news.sampleNotice} />
 
         <div className="mt-[1.1rem]">
           <NewsMeta article={article} lang={lang} />
         </div>
-        <h1 className="mt-[0.5rem] font-serif text-[2.1rem] leading-[1.15] font-medium lg:text-[1.97rem] lg:leading-[2.4rem] el:font-semibold">
+        <h1 lang={textLang(article, lang)} className="mt-[0.5rem] font-serif text-[2.1rem] leading-[1.15] font-medium lg:text-[1.97rem] lg:leading-[2.4rem] el:font-semibold">
           {article.title}
         </h1>
         <div className="relative mt-[1rem] aspect-[16/9] overflow-hidden rounded-[0.3rem]">
           <NewsCover image={article.image} sizes="(min-width: 1024px) 63vw, 100vw" preload />
         </div>
-        {/* Written in the school's own CMS, not by site visitors. */}
+        {/* Written in the school's own WordPress at ims.edu.gr, not by site visitors. */}
         <div
+          lang={textLang(article, lang)}
           className="article-content mt-[1.25rem]"
           dangerouslySetInnerHTML={{ __html: article.contentHtml }}
         />
+        <SourceLink article={article} text={news.original} />
       </article>
 
       {moreArticles.length > 0 && (

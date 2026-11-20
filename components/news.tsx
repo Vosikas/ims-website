@@ -2,12 +2,17 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Locale } from "@/app/[lang]/locales";
 import { ArrowRightIcon } from "@/components/icons";
-import { usingSampleContent, type NewsArticle, type NewsImage } from "@/lib/news";
+import { newsSource, type NewsArticle, type NewsImage } from "@/lib/news";
 
 const dateLocales: Record<Locale, string> = {
   en: "en-GB",
   el: "el-GR",
 };
+
+// Set on an article's own text when it is in another language than the page.
+export function textLang(article: NewsArticle, lang: Locale) {
+  return article.language === lang ? undefined : article.language;
+}
 
 function formatDate(date: string, lang: Locale) {
   return new Intl.DateTimeFormat(dateLocales[lang], {
@@ -67,12 +72,31 @@ export function NewsCover({
   );
 }
 
-export function SampleNotice({ text }: { text: string }) {
-  if (!usingSampleContent) return null;
-
+// Where the announcements come from, with a link to the school's official site.
+export function SourceNotice({ text, lang }: { text: string; lang: Locale }) {
   return (
-    <p className="mx-auto mt-[0.9rem] w-fit max-w-full rounded-[0.3rem] border border-gold/60 px-[0.8rem] py-[0.3rem] text-center text-xs lg:text-[0.62rem]">
-      {text}
+    <p className="mx-auto mt-[0.9rem] w-fit max-w-full text-center text-xs lg:text-[0.62rem]">
+      <a
+        href={lang === "el" ? `${newsSource}/el/` : `${newsSource}/`}
+        className="underline decoration-gold underline-offset-[0.2em] hover:decoration-2"
+      >
+        {text}
+      </a>
+    </p>
+  );
+}
+
+// The post on ims.edu.gr, at the end of an article.
+export function SourceLink({ article, text }: { article: NewsArticle; text: string }) {
+  return (
+    <p className="mt-[1.5rem] border-t border-line pt-[1rem]">
+      <a
+        href={article.link}
+        className="group inline-flex items-center gap-[0.5rem] text-xs font-bold tracking-[0.05em] uppercase lg:text-[0.58rem]"
+      >
+        {text}
+        <ArrowRightIcon className="w-[0.9rem] -rotate-45 transition-transform group-hover:translate-x-0.5" />
+      </a>
     </p>
   );
 }
@@ -111,10 +135,10 @@ export function NewsCard({ article, lang, readMore, heading: Heading = "h2" }: N
         </div>
         <div className="flex flex-1 flex-col px-[1rem] pt-[0.8rem] pb-[0.9rem]">
           <NewsMeta article={article} lang={lang} />
-          <Heading className="mt-[0.4rem] font-serif text-[1.35rem] leading-[1.25] font-medium lg:text-[1.1rem] lg:leading-[1.4rem] el:font-semibold">
+          <Heading lang={textLang(article, lang)} className="mt-[0.4rem] font-serif text-[1.35rem] leading-[1.25] font-medium lg:text-[1.1rem] lg:leading-[1.4rem] el:font-semibold">
             {article.title}
           </Heading>
-          <p className="mt-[0.35rem] mb-[0.8rem] text-sm leading-[1.4] lg:text-[0.72rem] lg:leading-[1.05rem]">
+          <p lang={textLang(article, lang)} className="mt-[0.35rem] mb-[0.8rem] text-sm leading-[1.4] lg:text-[0.72rem] lg:leading-[1.05rem]">
             {article.excerpt}
           </p>
           <span className="mt-auto">
@@ -143,10 +167,10 @@ export function FeaturedNewsCard({ article, lang, readMore }: Omit<NewsCardProps
       <div className="flex flex-col justify-center px-[1.25rem] py-[1.25rem] lg:w-[48%] lg:px-[1.9rem]">
         <span className="mb-[0.7rem] block h-[0.125rem] w-[1.95rem] bg-gold" />
         <NewsMeta article={article} lang={lang} />
-        <h2 className="mt-[0.5rem] font-serif text-[1.7rem] leading-[1.2] font-medium lg:text-[1.5rem] lg:leading-[1.85rem] el:font-semibold">
+        <h2 lang={textLang(article, lang)} className="mt-[0.5rem] font-serif text-[1.7rem] leading-[1.2] font-medium lg:text-[1.5rem] lg:leading-[1.85rem] el:font-semibold">
           {article.title}
         </h2>
-        <p className="mt-[0.5rem] mb-[1rem] leading-[1.45] lg:text-[0.81rem] lg:leading-[1.15rem]">
+        <p lang={textLang(article, lang)} className="mt-[0.5rem] mb-[1rem] leading-[1.45] lg:text-[0.81rem] lg:leading-[1.15rem]">
           {article.excerpt}
         </p>
         <ReadMore text={readMore} />

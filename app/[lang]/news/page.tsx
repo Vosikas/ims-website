@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { FeaturedNewsCard, NewsCard, SampleNotice } from "@/components/news";
+import { FeaturedNewsCard, NewsCard, SourceNotice } from "@/components/news";
 import { SectionHeading } from "@/components/section-heading";
 import { getNewsArticles } from "@/lib/news";
 import { getDictionary } from "../dictionaries";
@@ -25,7 +25,7 @@ export default async function NewsPage({ params }: PageProps<"/[lang]/news">) {
   return (
     <main className="mx-auto max-w-[64rem] px-5 pt-[1.75rem] pb-[3rem] text-center lg:pr-[2.5625rem] lg:pl-[2.8125rem]">
       <SectionHeading as="h1" eyebrow={news.eyebrow} title={news.title} intro={news.intro} />
-      <SampleNotice text={news.sampleNotice} />
+      <SourceNotice text={news.source} lang={lang} />
 
       {featured ? (
         <FeaturedNewsCard article={featured} lang={lang} readMore={news.readMore} />

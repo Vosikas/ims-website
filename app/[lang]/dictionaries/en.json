@@ -345,7 +345,9 @@
     "back": "All news",
     "more": "More news",
     "empty": "There is no news to show yet. Please check back soon.",
-    "sampleNotice": "Sample content: these articles are placeholders until the site is connected to WordPress."
+    "source": "Announcements come from the school's official website, ims.edu.gr.",
+
+    "original": "This announcement on ims.edu.gr"
   },
   "contact": {
     "metaTitle": "Contact | IMS",
