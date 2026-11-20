@@ -53,48 +53,61 @@ type WpPost = {
   };
 };
 
-// Newest first.
+// Newest first. When ims.edu.gr doesn't answer, the result is empty and kept only for a minute,
+// so the news come back as soon as the school's site does.
 export async function getNewsArticles(locale: Locale): Promise<NewsArticle[]> {
   "use cache";
-  cacheLife("default");
   cacheTag("news");
 
-  return findPosts(locale, {});
+  const { articles, reached } = await findPosts(locale, {});
+  if (reached) cacheLife("default");
+  else cacheLife("minutes");
+  return articles;
 }
 
 export async function getNewsArticle(locale: Locale, slug: string): Promise<NewsArticle | null> {
   "use cache";
-  cacheLife("default");
   cacheTag("news");
 
-  const [article] = await findPosts(locale, { slug });
-  return article ?? null;
+  const { articles, reached } = await findPosts(locale, { slug });
+  if (reached) cacheLife("default");
+  else cacheLife("minutes");
+  return articles[0] ?? null;
 }
 
-async function findPosts(locale: Locale, query: Record<string, string>): Promise<NewsArticle[]> {
+async function findPosts(
+  locale: Locale,
+  query: Record<string, string>,
+): Promise<{ articles: NewsArticle[]; reached: boolean }> {
   const own = await fetchPosts({ ...query, lang: locale });
+  if (own === null) return { articles: [], reached: false };
   if (own.length > 0 || locale === newsLanguage) {
-    return own.map((post) => toArticle(post, locale));
+    return { articles: own.map((post) => toArticle(post, locale)), reached: true };
   }
   const main = await fetchPosts({ ...query, lang: newsLanguage });
-  return main.map((post) => toArticle(post, newsLanguage));
+  if (main === null) return { articles: [], reached: false };
+  return { articles: main.map((post) => toArticle(post, newsLanguage)), reached: true };
 }
 
-// A school site that is down or slow leaves the news empty rather than breaking the page.
-async function fetchPosts(query: Record<string, string>): Promise<WpPost[]> {
+// The school's site can be slow, so a request gets 15 seconds and one more try.
+// Null means it didn't answer; the pages then show no news rather than break.
+async function fetchPosts(query: Record<string, string>): Promise<WpPost[] | null> {
   const url = new URL(postsUrl);
   url.search = new URLSearchParams({ _embed: "wp:term,wp:featuredmedia", per_page: "30", ...query }).toString();
-  try {
-    const response = await fetch(url, {
-      headers: { Accept: "application/json" },
-      signal: AbortSignal.timeout(10_000),
-    });
-    if (!response.ok) return [];
-    const posts: unknown = await response.json();
-    return Array.isArray(posts) ? (posts as WpPost[]) : [];
-  } catch {
-    return [];
+  for (let attempt = 0; attempt < 2; attempt++) {
+    try {
+      const response = await fetch(url, {
+        headers: { Accept: "application/json" },
+        signal: AbortSignal.timeout(15_000),
+      });
+      if (!response.ok) continue;
+      const posts: unknown = await response.json();
+      return Array.isArray(posts) ? (posts as WpPost[]) : [];
+    } catch {
+      // Try once more.
+    }
   }
+  return null;
 }
 
 function toArticle(post: WpPost, language: Locale): NewsArticle {

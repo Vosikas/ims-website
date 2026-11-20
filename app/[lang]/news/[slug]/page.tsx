@@ -9,10 +9,14 @@ import { hasLocale } from "../../locales";
 
 const moreArticlesCount = 3;
 
+// Cache Components needs at least one path. With no news yet, or with ims.edu.gr not answering
+// during the build, this one stands in and shows the not-found page; real posts render on visit.
+const noArticles = [{ slug: "no-articles-yet" }];
+
 export async function generateStaticParams({ params }: { params: { lang: string } }) {
-  if (!hasLocale(params.lang)) return [];
+  if (!hasLocale(params.lang)) return noArticles;
   const articles = await getNewsArticles(params.lang);
-  return articles.map(({ slug }) => ({ slug }));
+  return articles.length > 0 ? articles.map(({ slug }) => ({ slug })) : noArticles;
 }
 
 export async function generateMetadata({

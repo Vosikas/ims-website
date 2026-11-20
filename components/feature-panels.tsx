@@ -2,7 +2,7 @@ import Image, { type StaticImageData } from "next/image";
 import Link from "next/link";
 import type { Dictionary } from "@/app/[lang]/dictionaries";
 import { ArrowRightIcon } from "@/components/icons";
-import newsEventsImage from "@/public/images/home/news-events.jpg";
+import newsEventsImage from "@/public/images/school/school-event.jpg";
 import schoolLifeImage from "@/public/images/campus/court.jpg";
 
 const tones = {
@@ -26,6 +26,8 @@ type FeaturePanelProps = {
   text: Dictionary["schoolLife"];
   href: string;
   image: StaticImageData;
+  /** Where the photo is cropped. */
+  focusClassName?: string;
   contentClassName: string;
   photoClassName: string;
 };
@@ -36,6 +38,7 @@ function FeaturePanel({
   text,
   href,
   image,
+  focusClassName = "",
   contentClassName,
   photoClassName,
 }: FeaturePanelProps) {
@@ -75,7 +78,7 @@ function FeaturePanel({
           fill
           placeholder="blur"
           sizes="(min-width: 1024px) 26vw, (min-width: 640px) 50vw, 100vw"
-          className="object-cover"
+          className={`object-cover ${focusClassName}`}
         />
         <div
           className={`absolute inset-0 bg-gradient-to-b to-transparent to-30% sm:bg-gradient-to-r ${styles.fade}`}
@@ -115,6 +118,7 @@ export function FeaturePanels({
         text={newsEvents}
         href={newsHref}
         image={newsEventsImage}
+        focusClassName="object-[50%_30%]"
         contentClassName="lg:pt-[1.85rem] lg:pl-[2.45rem]"
         photoClassName="sm:w-[52.5%]"
       />

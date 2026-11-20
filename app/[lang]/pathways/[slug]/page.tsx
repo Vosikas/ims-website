@@ -88,7 +88,6 @@ async function Pathway({ params }: Pick<PageProps<"/[lang]/pathways/[slug]">, "p
           </dl>
         </div>
         <div className="relative aspect-[612/256] lg:aspect-auto lg:min-h-[17rem]">
-          {/* A generated placeholder until the school's own photo comes from WordPress. */}
           <Image
             src={pathway.image}
             alt={page.alt}
@@ -96,7 +95,7 @@ async function Pathway({ params }: Pick<PageProps<"/[lang]/pathways/[slug]">, "p
             preload
             placeholder="blur"
             sizes="(min-width: 1024px) 34vw, 100vw"
-            className="object-cover"
+            className={`object-cover ${pathway.focusClassName}`}
           />
         </div>
       </header>

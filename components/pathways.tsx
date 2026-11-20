@@ -38,7 +38,7 @@ function CardLink({ href, className, children }: CardLinkProps) {
 }
 
 function PathwayCard({ pathway, text, lang }: PathwayCardProps) {
-  const { number, image, panelClassName, accentClassName, slug, href } = pathway;
+  const { number, image, focusClassName, panelClassName, accentClassName, slug, href } = pathway;
 
   return (
     <li>
@@ -53,7 +53,7 @@ function PathwayCard({ pathway, text, lang }: PathwayCardProps) {
             fill
             placeholder="blur"
             sizes="(min-width: 1024px) 31vw, (min-width: 640px) 50vw, 100vw"
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            className={`object-cover transition-transform duration-500 group-hover:scale-105 ${focusClassName}`}
           />
         </div>
         <div

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import emblem from "@/public/images/brand/ims-emblem-name-white.png";
 import Link from "next/link";
 import type { Locale } from "@/app/[lang]/locales";
 import { ArrowRightIcon } from "@/components/icons";
@@ -51,11 +52,8 @@ export function NewsCover({
 }) {
   if (!image) {
     return (
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 flex items-center justify-center bg-navy font-display text-[3.5rem] font-semibold text-white/90"
-      >
-        IMS
+      <div aria-hidden="true" className="absolute inset-0 flex items-center justify-center bg-navy">
+        <Image src={emblem} alt="" sizes="12rem" className="h-auto w-[42%] max-w-[12rem] opacity-90" />
       </div>
     );
   }

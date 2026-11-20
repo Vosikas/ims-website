@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Dictionary } from "@/app/[lang]/dictionaries";
 import { ChevronDownIcon } from "@/components/icons";
-import heroImage from "@/public/images/home/hero.jpg";
+import heroImage from "@/public/images/school/building-facade.jpg";
 
 export function Hero({ dict }: { dict: Dictionary["hero"] }) {
   return (
@@ -14,9 +14,10 @@ export function Hero({ dict }: { dict: Dictionary["hero"] }) {
         preload
         placeholder="blur"
         sizes="100vw"
-        className="-z-10 object-cover object-[28%_50%] lg:object-center"
+        className="-z-10 object-cover object-[30%_45%] lg:object-[50%_22%]"
       />
-      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-black/60 via-black/30 to-transparent lg:hidden" />
+      {/* The building is light, so the side with the name is shaded for the white text. */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-navy/85 via-navy/55 to-navy/10 lg:via-navy/35 lg:to-transparent" />
 
       <div className="flex h-full flex-col justify-center px-6 text-white lg:px-0 lg:pt-[1.61rem] lg:pl-[6.0625rem]">
         <h1>

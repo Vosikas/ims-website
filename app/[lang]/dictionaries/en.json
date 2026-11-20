@@ -23,7 +23,7 @@
   },
   "hero": {
     "tagline": "Educating minds.\nShaping futures.",
-    "alt": "Pupils with backpacks walking along a sunlit, tree-lined path towards the IMS school building",
+    "alt": "The International Metropolitan School building, with the lighthouse emblem and the letters IMS on its front",
     "scrollLabel": "Scroll to our educational pathways"
   },
   "pathways": {
@@ -34,32 +34,32 @@
       "nursery": {
         "title": "Nursery",
         "description": "A safe and nurturing start\nfor a bright future.",
-        "alt": "Young boy playing with building blocks in a nursery classroom"
+        "alt": "A toddler plays with soil and small pots in the school's outdoor mud kitchen"
       },
       "kindergarten": {
         "title": "Kindergarten",
         "description": "Curiosity. Creativity.\nConfidence.",
-        "alt": "Smiling girl holding up hands covered in colourful paint"
+        "alt": "A pupil points at the class's drawings and crafts on a colourful board"
       },
       "primarySchool": {
         "title": "Primary School",
         "description": "Building knowledge,\nskills and character.",
-        "alt": "Primary school pupil writing at a desk in a classroom"
+        "alt": "Pupils around a large colourful play parachute in the schoolyard, seen from above"
       },
       "middleSchool": {
         "title": "Middle School\n(IB MYP)",
         "description": "Exploring ideas.\nMaking connections.",
-        "alt": "Student looking through a microscope during a science lesson"
+        "alt": "Middle school students on the red spinning chairs of the student lounge"
       },
       "ibDiploma": {
         "title": "IB Diploma",
         "description": "A global perspective\nfor lifelong opportunities.",
-        "alt": "Three students working together at a library table"
+        "alt": "Students working at the iMacs of the computer lab"
       },
       "generalLyceum": {
         "title": "General Lyceum",
         "description": "A strong foundation\nfor the future.",
-        "alt": "Lyceum student writing during a lesson"
+        "alt": "Students studying together at a table with notebooks and books"
       }
     }
   },
@@ -84,7 +84,7 @@
           "Aftercare from 2:00 to 4:00 pm for ages 8 months to 5 years, with the option to rest if parents wish.",
           "After-school clubs during aftercare: robotics, STEM, mini tennis, ballet and music."
         ],
-        "alt": "A young boy plays with building blocks in a nursery classroom"
+        "alt": "A toddler plays with soil and small pots in the school's outdoor mud kitchen"
       },
       "kindergarten": {
         "ages": "3 – 6 years",
@@ -99,7 +99,7 @@
           "Outdoor classroom once a week for ages 4 to 8: “The best classroom has only the sky as its roof.”",
           "Early Years students (ages 3 to 5) carry out four IB PYP units of inquiry each year."
         ],
-        "alt": "A smiling girl shows hands covered in colourful paint"
+        "alt": "A pupil points at the class's drawings and crafts on a colourful board"
       },
       "primarySchool": {
         "ages": "6 – 12 years",
@@ -115,7 +115,7 @@
           "In Grade 6, the PYP Exhibition: students present their own inquiry to the whole school community.",
           "iPad 1:1 programme from Grade 3 to Grade 6."
         ],
-        "alt": "A primary school pupil writing at a desk in class"
+        "alt": "Pupils around a large colourful play parachute in the schoolyard, seen from above"
       },
       "middleSchool": {
         "ages": "11 – 16 years",
@@ -130,7 +130,7 @@
           "The “Steve Jobs” iMac Lab, the “Democritus” Chemistry Lab and the “Archimedes” Physics Lab.",
           "Field trips of 2 to 4 days every year: Kalavryta, Thessaloniki and Fort Roupel, Cyprus, Ioannina."
         ],
-        "alt": "A student looks through a microscope during a science lesson"
+        "alt": "Middle school students on the red spinning chairs of the student lounge"
       },
       "ibDiploma": {
         "ages": "16 – 18 years",
@@ -144,7 +144,7 @@
         "facts": [
           "More about the programme: www.ibo.org"
         ],
-        "alt": "Three students working together at a library table"
+        "alt": "Students working at the iMacs of the computer lab"
       }
     }
   },
@@ -206,7 +206,10 @@
     "text": "With the goal of providing a safe and supportive environment, we ensure that every student feels accepted, respected and successful. Our philosophy is to educate the whole child, instilling values such as open-mindedness, resilience and critical thinking, all while following an internationally recognised curriculum.",
     "motto": "«Πάντ’ εστίν εξευρείν, αν μη τον πόνον φεύγη τις.»",
     "mottoMeaning": "All can be attained if one does not evade labour.",
-    "signature": "Ioannis Dimitrellos & Constantina Valsamidou – Dimitrellou",
+    "leaders": [
+      "Ioannis Dimitrellos",
+      "Constantina Valsamidou – Dimitrellou"
+    ],
     "mottoAuthor": "Demosthenes (384 – 322 BC)"
   },
   "campus": {
@@ -249,27 +252,27 @@
       "wellbeing": {
         "title": "Wellbeing",
         "text": "At our school, wellbeing is a fundamental part of who we are. Our school psychologist, SEN support and differentiation, a core IB principle, make sure every student has access to the right support.",
-        "alt": "Students working together at a table"
+        "alt": "The bright student lounge, with sofas and red chairs"
       },
       "learning": {
         "title": "Learning support",
         "text": "Every student has a unique learning profile. Our learning support team helps in class, in small groups or individually, and the GAL programme (Greek as an Additional Language) supports students whose first language is not Greek for at least three hours a week.",
-        "alt": "A student writing at a desk"
+        "alt": "Teachers working with a small group of pupils at a table"
       },
       "library": {
         "title": "The “Dimosthenis” library",
         "text": "A vibrant place for learning through inquiry: a safe, warm space to study individually or in groups, with computers, digital books and the guidance of our librarian.",
-        "alt": "A study table with a computer and yellow chairs in front of bookshelves"
+        "alt": "Students reading in the library, among bookshelves and wooden steps"
       },
       "science": {
         "title": "Science",
         "text": "Science at IMS is mostly a hands-on experience, in our “Democritus” Chemistry Lab and “Archimedes” Physics Lab, so students experience scientific concepts and understand them more deeply.",
-        "alt": "A student looking through a microscope"
+        "alt": "A student wiring an electronics breadboard in the lab"
       },
       "technology": {
         "title": "Technology & innovation",
         "text": "The “Steve Jobs” iMac Lab, interactive smart boards and a 1:1 iPad programme from Grade 3 to Grade 6. Toddle brings together curriculum planning, assessment and school–home communication.",
-        "alt": "The computer lab with iMacs and student projects on the shelves"
+        "alt": "The computer lab, with iMacs on white desks"
       },
       "makerspace": {
         "title": "STEM lab",
@@ -279,22 +282,22 @@
       "sports": {
         "title": "Sport",
         "text": "Football, basketball, mini tennis and fencing, and in winter skiing on Parnassos and in Kalavryta, canoeing, kayaking and hiking. The “Amisos” girls’ volleyball team, and tournaments with other international schools every year.",
-        "alt": "The school's basketball court"
+        "alt": "A basketball on the artificial grass of the schoolyard"
       },
       "trips": {
         "title": "Trips & service",
         "text": "Field trips of 2 to 4 days for MYP students, to Kalavryta, Thessaloniki, Cyprus and Ioannina, and every year abroad with other IB schools. Students and teachers spent a week at the “Smile Community Centre” in Kenya.",
-        "alt": "A school performance on stage in front of an audience"
+        "alt": "Students with their teacher on a school trip"
       },
       "outdoor": {
         "title": "Outdoor classroom",
         "text": "Once a week, for children aged 4 to 8. Children learn everywhere and all the time: outside they start their own activities, with teachers there to support them, and experience nature in as many ways as possible.",
-        "alt": "A child with hands covered in colourful paint"
+        "alt": "Young pupils in high-visibility vests noting what they find outdoors"
       },
       "afterSchool": {
         "title": "After school",
         "text": "Aftercare from 2:00 to 4:00 pm for ages 8 months to 5 years, with robotics, STEM, mini tennis, ballet and music, and a Homework Club for primary students, with a break and lunch.",
-        "alt": "A young boy playing with building blocks"
+        "alt": "A child programming robot cubes from a tablet"
       }
     },
     "practical": {
@@ -331,7 +334,7 @@
     "title": "News & Events",
     "description": "Stay informed about the latest\nnews, achievements and upcoming\nevents at IMS.",
     "linkLabel": "View Latest News",
-    "alt": "School performance on stage in front of a full auditorium"
+    "alt": "Dancers in traditional Greek costume at a school event"
   },
   "footer": {
     "tagline": "A world of opportunities\nstarts here."
@@ -346,7 +349,6 @@
     "more": "More news",
     "empty": "There is no news to show yet. Please check back soon.",
     "source": "Announcements come from the school's official website, ims.edu.gr.",
-
     "original": "This announcement on ims.edu.gr"
   },
   "contact": {

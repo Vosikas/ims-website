@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
 import Image, { type StaticImageData } from "next/image";
 import { notFound } from "next/navigation";
-import computerLab from "@/public/images/campus/computer-lab.jpg";
-import court from "@/public/images/campus/court.jpg";
-import library from "@/public/images/campus/library.jpg";
 import makerspace from "@/public/images/campus/makerspace.jpg";
-import ibDiploma from "@/public/images/home/ib-diploma.jpg";
-import kindergarten from "@/public/images/home/kindergarten.jpg";
-import middleSchool from "@/public/images/home/middle-school.jpg";
-import newsEvents from "@/public/images/home/news-events.jpg";
-import nursery from "@/public/images/home/nursery.jpg";
-import primarySchool from "@/public/images/home/primary-school.jpg";
+import basketball from "@/public/images/school/basketball.jpg";
+import imacLab from "@/public/images/school/imac-lab.jpg";
+import learningSupport from "@/public/images/school/learning-support.jpg";
+import library from "@/public/images/school/library-reading.jpg";
+import outdoorClassroom from "@/public/images/school/outdoor-classroom.jpg";
+import robotics from "@/public/images/school/robotics-ipad.jpg";
+import schoolTrip from "@/public/images/school/school-trip.jpg";
+import science from "@/public/images/school/science-electronics.jpg";
+import studentLounge from "@/public/images/school/student-lounge.jpg";
 import { getDictionary, type Dictionary } from "../dictionaries";
 import { hasLocale } from "../locales";
 
@@ -19,23 +19,21 @@ type SectionId = keyof Dictionary["schoolLifePage"]["sections"];
 type Section = {
   id: SectionId;
   image: StaticImageData;
-  /** A generated image standing in until the school's own photo comes from WordPress. */
-  placeholder: boolean;
   focusClassName?: string;
 };
 
-// Texts from ims.edu.gr ("Η ζωή στο σχολείο"); the photos are the school's where it has one.
+// Texts and photos from ims.edu.gr ("Η ζωή στο σχολείο").
 const sections: Section[] = [
-  { id: "wellbeing", image: ibDiploma, placeholder: true },
-  { id: "learning", image: primarySchool, placeholder: true },
-  { id: "library", image: library, placeholder: false, focusClassName: "object-[45%_68%]" },
-  { id: "science", image: middleSchool, placeholder: true },
-  { id: "technology", image: computerLab, placeholder: false, focusClassName: "object-[50%_58%]" },
-  { id: "makerspace", image: makerspace, placeholder: false, focusClassName: "object-[62%_55%]" },
-  { id: "sports", image: court, placeholder: false },
-  { id: "trips", image: newsEvents, placeholder: true },
-  { id: "outdoor", image: kindergarten, placeholder: true },
-  { id: "afterSchool", image: nursery, placeholder: true },
+  { id: "wellbeing", image: studentLounge },
+  { id: "learning", image: learningSupport, focusClassName: "object-[50%_62%]" },
+  { id: "library", image: library, focusClassName: "object-[45%_55%]" },
+  { id: "science", image: science },
+  { id: "technology", image: imacLab, focusClassName: "object-[50%_60%]" },
+  { id: "makerspace", image: makerspace, focusClassName: "object-[62%_55%]" },
+  { id: "sports", image: basketball, focusClassName: "object-[30%_50%]" },
+  { id: "trips", image: schoolTrip, focusClassName: "object-[50%_40%]" },
+  { id: "outdoor", image: outdoorClassroom },
+  { id: "afterSchool", image: robotics },
 ];
 
 const practicalItems = ["canteen", "uniform", "transport", "camp", "languages", "maths"] as const;

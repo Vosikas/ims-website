@@ -1,4 +1,10 @@
+import Image from "next/image";
 import type { Dictionary } from "@/app/[lang]/dictionaries";
+import ioannis from "@/public/images/school/director-ioannis-dimitrellos.jpg";
+import konstantina from "@/public/images/school/director-konstantina-valsamidou-dimitrellou.jpg";
+
+// In the same order as dict.leaders.
+const portraits = [ioannis, konstantina];
 
 export function LeadershipMessage({ dict }: { dict: Dictionary["message"] }) {
   return (
@@ -29,9 +35,28 @@ export function LeadershipMessage({ dict }: { dict: Dictionary["message"] }) {
           <p className="mt-[0.8rem] text-base leading-[1.65] font-light lg:text-[0.9rem] lg:leading-[1.5rem]">
             {dict.text}
           </p>
-          <p className="mt-[1rem] text-xs font-bold tracking-[0.06em] text-white/85 uppercase lg:text-[0.62rem]">
-            {dict.signature}
-          </p>
+          {/* The two directors who sign the message, in the order ims.edu.gr shows them. */}
+          <ul className="mt-[1.3rem] flex flex-wrap gap-x-[1.4rem] gap-y-[1rem]">
+            {dict.leaders.map((name, i) => (
+              <li key={name} className="w-[7.5rem] lg:w-[6.4rem]">
+                <figure>
+                  <div className="relative aspect-[4/5] overflow-hidden rounded-[0.3rem] bg-white/10">
+                    <Image
+                      src={portraits[i]}
+                      alt={name}
+                      fill
+                      placeholder="blur"
+                      sizes="8rem"
+                      className="object-cover object-[50%_22%]"
+                    />
+                  </div>
+                  <figcaption className="mt-[0.5rem] text-xs leading-[1.35] font-bold tracking-[0.04em] text-white/85 uppercase lg:text-[0.58rem]">
+                    {name}
+                  </figcaption>
+                </figure>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>

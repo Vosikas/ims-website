@@ -1,11 +1,11 @@
 import type { StaticImageData } from "next/image";
 import type { Dictionary } from "@/app/[lang]/dictionaries";
-import generalLyceum from "@/public/images/home/general-lyceum.jpg";
-import ibDiploma from "@/public/images/home/ib-diploma.jpg";
-import kindergarten from "@/public/images/home/kindergarten.jpg";
-import middleSchool from "@/public/images/home/middle-school.jpg";
-import nursery from "@/public/images/home/nursery.jpg";
-import primarySchool from "@/public/images/home/primary-school.jpg";
+import ibDiploma from "@/public/images/school/computer-lab-students.jpg";
+import kindergarten from "@/public/images/school/kindergarten-crafts.jpg";
+import middleSchool from "@/public/images/school/middle-school-lounge.jpg";
+import nursery from "@/public/images/school/nursery-mud-kitchen.jpg";
+import primarySchool from "@/public/images/school/primary-parachute-game.jpg";
+import generalLyceum from "@/public/images/school/students-studying.jpg";
 
 export type PathwayId = keyof Dictionary["pathways"]["items"];
 export type PagedPathwayId = keyof Dictionary["pathwayPages"]["items"];
@@ -13,11 +13,10 @@ export type PagedPathwayId = keyof Dictionary["pathwayPages"]["items"];
 export type Pathway = {
   id: PathwayId;
   number: string;
-  /**
-   * Generated placeholder photos, to be replaced by the school's own once they come from its
-   * WordPress media library.
-   */
+  /** The school's own photo, from ims.edu.gr. */
   image: StaticImageData;
+  /** Where the photo is cropped, for the wide card and the pathway page. */
+  focusClassName: string;
   panelClassName: string;
   accentClassName?: string;
   /** The pathway's own page under /[lang]/pathways/. */
@@ -31,6 +30,7 @@ export const pathways: Pathway[] = [
     id: "nursery",
     number: "01",
     image: nursery,
+    focusClassName: "object-[40%_45%]",
     panelClassName: "bg-nursery",
     accentClassName: "text-nursery-ink",
     slug: "nursery",
@@ -39,6 +39,7 @@ export const pathways: Pathway[] = [
     id: "kindergarten",
     number: "02",
     image: kindergarten,
+    focusClassName: "object-[50%_42%]",
     panelClassName: "bg-kindergarten",
     slug: "kindergarten",
   },
@@ -46,6 +47,7 @@ export const pathways: Pathway[] = [
     id: "primarySchool",
     number: "03",
     image: primarySchool,
+    focusClassName: "object-[45%_45%]",
     panelClassName: "bg-primary-school",
     slug: "primary-school",
   },
@@ -53,6 +55,7 @@ export const pathways: Pathway[] = [
     id: "middleSchool",
     number: "04",
     image: middleSchool,
+    focusClassName: "object-[55%_60%]",
     panelClassName: "bg-middle-school",
     slug: "middle-school",
   },
@@ -60,6 +63,7 @@ export const pathways: Pathway[] = [
     id: "ibDiploma",
     number: "05",
     image: ibDiploma,
+    focusClassName: "object-[50%_62%]",
     panelClassName: "bg-ib-diploma",
     slug: "ib-diploma",
   },
@@ -68,6 +72,7 @@ export const pathways: Pathway[] = [
     id: "generalLyceum",
     number: "06",
     image: generalLyceum,
+    focusClassName: "object-[50%_45%]",
     panelClassName: "bg-general-lyceum",
     href: "/panhellenicexams",
   },

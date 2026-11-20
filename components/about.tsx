@@ -1,6 +1,6 @@
 import Image from "next/image";
 import type { Dictionary } from "@/app/[lang]/dictionaries";
-import entrance from "@/public/images/campus/entrance.jpg";
+import emblem from "@/public/images/school/building-emblem.jpg";
 
 export function About({ dict }: { dict: Dictionary["about"] }) {
   const { mission, history } = dict;
@@ -39,12 +39,12 @@ export function About({ dict }: { dict: Dictionary["about"] }) {
         <figure className="self-start">
           <div className="relative aspect-[4/5] overflow-hidden rounded-[0.3rem] bg-mist lg:aspect-[5/6]">
             <Image
-              src={entrance}
+              src={emblem}
               alt={mission.emblemAlt}
               fill
               placeholder="blur"
               sizes="(min-width: 1024px) 28vw, 100vw"
-              className="scale-[1.55] object-cover object-[24%_18%] [transform-origin:24%_18%]"
+              className="object-cover object-[50%_35%]"
             />
           </div>
           <figcaption className="mt-[0.7rem] font-serif text-[1.15rem] leading-[1.45] italic lg:text-[0.98rem] lg:leading-[1.4rem]">
